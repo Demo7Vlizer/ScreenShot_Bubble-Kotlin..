@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Screenshot Bubble</string>
+    <string name="permission_overlay_desc">Allow floating icon to appear on top of other apps</string>
+    <string name="permission_capture_desc">Enable the ability to capture screenshots</string>
+    <string name="button_allow_overlay">Allow floating icon</string>
+    <string name="button_enable_capture">Enable screenshot capture</string>
+    <string name="all_set">You\'re all set!</string>
+    <string name="notification_channel_name">Screenshot Service</string>
+    <string name="notification_channel_desc">Shows when screenshot bubble is active</string>
+    <string name="notification_text">Screenshot Bubble is active</string>
+    <string name="notification_stop">Stop</string>
+    <string name="notification_reopen_title">Reopen Screenshot Bubble</string>
+    <string name="notification_reopen_text">Screenshot Bubble was interrupted — tap to reopen and re-enable</string>
+    <string name="error_save_failed">Failed to save</string>
+    <string name="error_projections_stopped">Screenshot capture was interrupted</string>
+    <string name="saved_label">Saved ✓</string>
+</resources>
