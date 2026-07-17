@@ -4,7 +4,7 @@
             "outputFile": "com.screenshotbubble.app-mergeDebugResources-29:/values-v28/values-v28.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\NAV\\.gradle\\caches\\9.0-milestone-1\\transforms\\8b78596945d728fec3f37b885aeefec1\\transformed\\appcompat-1.6.1\\res\\values-v28\\values-v28.xml",
+                    "source": "C:\\Users\\NAV\\.gradle\\caches\\transforms-3\\9756fab58daf3b55028a539310104216\\transformed\\appcompat-1.6.1\\res\\values-v28\\values-v28.xml",
                     "from": {
                         "startLines": "2,3,4,8",
                         "startColumns": "4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\NAV\\.gradle\\caches\\9.0-milestone-1\\transforms\\03ed09fe46173020d11380788fe6839a\\transformed\\material-1.11.0\\res\\values-v28\\values-v28.xml",
+                    "source": "C:\\Users\\NAV\\.gradle\\caches\\transforms-3\\3c6da16fc08c5e7b7caed394bbbfefaa\\transformed\\material-1.11.0\\res\\values-v28\\values-v28.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",

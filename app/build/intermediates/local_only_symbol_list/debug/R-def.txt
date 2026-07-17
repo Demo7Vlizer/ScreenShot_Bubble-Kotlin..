@@ -13,6 +13,8 @@ drawable bg_popup_card
 drawable ic_camera
 drawable ic_check
 drawable ic_close
+drawable ic_launcher_background
+drawable ic_launcher_foreground
 id all_set_container
 id button_capture_permission
 id button_overlay_permission
@@ -24,6 +26,8 @@ layout activity_main
 layout close_target
 layout floating_icon
 layout thumbnail_popup
+mipmap ic_launcher
+mipmap ic_launcher_round
 string all_set
 string app_name
 string button_allow_overlay

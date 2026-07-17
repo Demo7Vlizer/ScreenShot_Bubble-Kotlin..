@@ -4,7 +4,7 @@
             "outputFile": "com.screenshotbubble.app-mergeDebugResources-29:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\NAV\\.gradle\\caches\\9.0-milestone-1\\transforms\\8b78596945d728fec3f37b885aeefec1\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\NAV\\.gradle\\caches\\transforms-3\\9756fab58daf3b55028a539310104216\\transformed\\appcompat-1.6.1\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\NAV\\.gradle\\caches\\9.0-milestone-1\\transforms\\5f2aa0165b2ab0df5ca7c40d78259b54\\transformed\\core-1.12.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\NAV\\.gradle\\caches\\transforms-3\\440a64c1659b3784956be1ef27019da1\\transformed\\core-1.12.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

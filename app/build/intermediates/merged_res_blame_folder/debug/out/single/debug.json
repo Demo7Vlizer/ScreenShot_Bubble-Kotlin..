@@ -1,54 +1,102 @@
 [
     {
-        "merged": "com.screenshotbubble.app-merged_res-31:/layout_floating_icon.xml.flat",
-        "source": "com.screenshotbubble.app-main-33:/layout/floating_icon.xml"
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_check.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_check.xml"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_close_circle.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\drawable\\bg_close_circle.xml"
+        "merged": "com.screenshotbubble.app-merged_res-31:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.screenshotbubble.app-main-33:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_floating_circle.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\drawable\\bg_floating_circle.xml"
+        "merged": "com.screenshotbubble.app-merged_res-31:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.screenshotbubble.app-main-33:/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_popup_card.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\drawable\\bg_popup_card.xml"
+        "merged": "com.screenshotbubble.app-merged_res-31:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.screenshotbubble.app-main-33:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
-        "merged": "com.screenshotbubble.app-merged_res-31:/drawable_bg_floating_circle.xml.flat",
-        "source": "com.screenshotbubble.app-main-33:/drawable/bg_floating_circle.xml"
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\layout_thumbnail_popup.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\thumbnail_popup.xml"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-merged_res-31:\\layout_floating_icon.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\layout\\floating_icon.xml"
+        "merged": "com.screenshotbubble.app-merged_res-31:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.screenshotbubble.app-main-33:/mipmap-hdpi/ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_check_badge.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\drawable\\bg_check_badge.xml"
+        "merged": "com.screenshotbubble.app-merged_res-31:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.screenshotbubble.app-main-33:/mipmap-xhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_check.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\drawable\\ic_check.xml"
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_check_badge.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\bg_check_badge.xml"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_camera.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\drawable\\ic_camera.xml"
+        "merged": "com.screenshotbubble.app-merged_res-31:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.screenshotbubble.app-main-33:/mipmap-mdpi/ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_close.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\drawable\\ic_close.xml"
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_floating_circle.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\bg_floating_circle.xml"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-merged_res-31:\\layout_thumbnail_popup.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\layout\\thumbnail_popup.xml"
+        "merged": "com.screenshotbubble.app-merged_res-31:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.screenshotbubble.app-main-33:/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-merged_res-31:\\layout_close_target.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\layout\\close_target.xml"
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\layout_close_target.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\close_target.xml"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-merged_res-31:\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_close.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_close.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-merged_res-31:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.screenshotbubble.app-main-33:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_camera.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_camera.xml"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-merged_res-31:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.screenshotbubble.app-main-33:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-merged_res-31:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.screenshotbubble.app-main-33:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_popup_card.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\bg_popup_card.xml"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_close_circle.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\bg_close_circle.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-merged_res-31:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.screenshotbubble.app-main-33:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\layout_floating_icon.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\floating_icon.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-merged_res-31:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.screenshotbubble.app-main-33:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.screenshotbubble.app-merged_res-31:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.screenshotbubble.app-main-33:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.screenshotbubble.app-merged_res-31:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.screenshotbubble.app-main-33:/mipmap-anydpi-v26/ic_launcher.xml"
     }
 ]

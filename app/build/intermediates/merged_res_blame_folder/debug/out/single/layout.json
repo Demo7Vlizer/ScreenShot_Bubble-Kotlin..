@@ -1,22 +1,18 @@
 [
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\layout\\activity_main.xml"
-    },
-    {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\floating_icon.xml",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\layout\\floating_icon.xml"
-    },
-    {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\close_target.xml",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\layout\\close_target.xml"
+        "merged": "com.screenshotbubble.app-mergeDebugResources-30:/layout/close_target.xml",
+        "source": "com.screenshotbubble.app-main-33:/layout/close_target.xml"
     },
     {
         "merged": "com.screenshotbubble.app-mergeDebugResources-30:/layout/floating_icon.xml",
         "source": "com.screenshotbubble.app-main-33:/layout/floating_icon.xml"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\thumbnail_popup.xml",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\9.0-milestone-1\\com.screenshotbubble.app-main-33:\\layout\\thumbnail_popup.xml"
+        "merged": "com.screenshotbubble.app-mergeDebugResources-30:/layout/activity_main.xml",
+        "source": "com.screenshotbubble.app-main-33:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-mergeDebugResources-30:/layout/thumbnail_popup.xml",
+        "source": "com.screenshotbubble.app-main-33:/layout/thumbnail_popup.xml"
     }
 ]
