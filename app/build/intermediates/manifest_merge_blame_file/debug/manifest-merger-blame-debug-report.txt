@@ -73,8 +73,8 @@
 43
 44        <service
 44-->C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:27:9-30:40
-45            android:name="com.screenshotbubble.ScreenshotService"
-45-->C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:28:13-66
+45            android:name="com.screenshotbubble.service.ScreenshotService"
+45-->C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:28:13-74
 46            android:exported="false"
 46-->C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:30:13-37
 47            android:foregroundServiceType="mediaProjection" />
@@ -82,8 +82,8 @@
 48
 49        <receiver
 49-->C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:32:9-34:40
-50            android:name="com.screenshotbubble.StopServiceReceiver"
-50-->C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:33:13-68
+50            android:name="com.screenshotbubble.service.StopServiceReceiver"
+50-->C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:33:13-76
 51            android:exported="false" />
 51-->C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:34:13-37
 52

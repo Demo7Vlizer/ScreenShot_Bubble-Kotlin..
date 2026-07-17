@@ -123,20 +123,20 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:23:17-77
 	android:name
 		ADDED from C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:23:27-74
-service#com.screenshotbubble.ScreenshotService
+service#com.screenshotbubble.service.ScreenshotService
 ADDED from C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:27:9-30:40
 	android:exported
 		ADDED from C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:30:13-37
 	android:foregroundServiceType
 		ADDED from C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:29:13-60
 	android:name
-		ADDED from C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:28:13-66
-receiver#com.screenshotbubble.StopServiceReceiver
+		ADDED from C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:28:13-74
+receiver#com.screenshotbubble.service.StopServiceReceiver
 ADDED from C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:32:9-34:40
 	android:exported
 		ADDED from C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:34:13-37
 	android:name
-		ADDED from C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:33:13-68
+		ADDED from C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml:33:13-76
 uses-sdk
 INJECTED from C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\NAV\Downloads\Portfolio_OPS\Testing_With-OpenCode-With-Cursor\floating_toolbox\app\src\main\AndroidManifest.xml

@@ -10,6 +10,7 @@
     <string name="app_name">Screenshot Bubble</string>
     <string name="button_allow_overlay">Allow floating icon</string>
     <string name="button_enable_capture">Enable screenshot capture</string>
+    <string name="coming_soon">Coming Soon</string>
     <string name="error_projections_stopped">Screenshot capture was interrupted</string>
     <string name="error_save_failed">Failed to save</string>
     <string name="notification_channel_desc">Shows when screenshot bubble is active</string>
@@ -21,6 +22,11 @@
     <string name="permission_capture_desc">Enable the ability to capture screenshots</string>
     <string name="permission_overlay_desc">Allow floating icon to appear on top of other apps</string>
     <string name="saved_label">Saved ✓</string>
+    <string name="toolbar_longshot">Long Screenshot</string>
+    <string name="toolbar_ocr">OCR Text</string>
+    <string name="toolbar_screenrecord">Screen Record</string>
+    <string name="toolbar_screenshot">Screenshot</string>
+    <string name="toolbar_settings">Settings</string>
     <style name="Theme.ScreenshotBubble" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/primary_blue</item>
         <item name="colorPrimaryVariant">@color/primary_blue</item>

@@ -42,12 +42,12 @@
         </activity>
 
         <service
-            android:name="com.screenshotbubble.ScreenshotService"
+            android:name="com.screenshotbubble.service.ScreenshotService"
             android:exported="false"
             android:foregroundServiceType="mediaProjection" />
 
         <receiver
-            android:name="com.screenshotbubble.StopServiceReceiver"
+            android:name="com.screenshotbubble.service.StopServiceReceiver"
             android:exported="false" />
 
         <provider

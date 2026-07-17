@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.screenshotbubble.service.ScreenshotService
 
 class MainActivity : AppCompatActivity() {
 

@@ -2889,8 +2889,13 @@ drawable avd_hide_password
 drawable avd_show_password
 drawable bg_check_badge
 drawable bg_close_circle
+drawable bg_drag_indicator
 drawable bg_floating_circle
+drawable bg_indicator_line
 drawable bg_popup_card
+drawable bg_toolbar_glass
+drawable bg_toolbar_item
+drawable bg_toolbar_shadow
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -2927,6 +2932,11 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_search_black_24
+drawable ic_toolbar_longshot
+drawable ic_toolbar_ocr
+drawable ic_toolbar_screenrecord
+drawable ic_toolbar_screenshot
+drawable ic_toolbar_settings
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
 drawable m3_bottom_sheet_drag_handle
@@ -3166,6 +3176,7 @@ id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id fade
+id feedback_text
 id fill
 id fill_horizontal
 id fill_vertical
@@ -3178,6 +3189,7 @@ id fitXY
 id fixed
 id flip
 id floating
+id floating_icon_camera
 id forever
 id fragment_container_view_tag
 id fullscreen_header
@@ -3430,6 +3442,9 @@ id title
 id titleDividerNoCustom
 id title_template
 id toggle
+id toolbar_item_icon
+id toolbar_item_label
+id toolbar_items_container
 id top
 id topPanel
 id touch_outside
@@ -3590,7 +3605,9 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout drag_indicator
 layout floating_icon
+layout floating_toolbar
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout m3_alert_dialog
@@ -3650,11 +3667,13 @@ layout notification_template_custom_big
 layout notification_template_icon_group
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout screenshot_feedback
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 layout thumbnail_popup
+layout toolbar_item
 mipmap ic_launcher
 mipmap ic_launcher_round
 plurals mtrl_badge_content_description
@@ -3708,6 +3727,7 @@ string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
 string clear_text_end_icon_content_description
+string coming_soon
 string error_a11y_label
 string error_icon_content_description
 string error_projections_stopped
@@ -3839,6 +3859,11 @@ string searchview_navigation_content_description
 string side_sheet_accessibility_pane_title
 string side_sheet_behavior
 string status_bar_notification_info_overflow
+string toolbar_longshot
+string toolbar_ocr
+string toolbar_screenrecord
+string toolbar_screenshot
+string toolbar_settings
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog
