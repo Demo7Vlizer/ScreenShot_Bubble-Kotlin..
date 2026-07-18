@@ -885,8 +885,8 @@
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
     <color name="text_primary">#1C1B1F</color>
-    <color name="text_secondary">#8E93A6</color>
-    <color name="text_tertiary">#B0B4C4</color>
+    <color name="text_secondary">#5F6368</color>
+    <color name="text_tertiary">#80868B</color>
     <color name="tooltip_background_dark">#e6616161</color>
     <color name="tooltip_background_light">#e6FFFFFF</color>
     <color name="white">#FFFFFF</color>

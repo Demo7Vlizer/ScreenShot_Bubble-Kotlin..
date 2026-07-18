@@ -9,6 +9,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.media.MediaActionSound
 import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
 import android.os.Build
@@ -37,6 +38,7 @@ class ScreenshotService : Service() {
     private var widgetManager: FloatingWidgetManager? = null
     private var screenshotCapture: ScreenshotCapture? = null
     private var mediaProjectionCallback: MediaProjectionCallback? = null
+    private var shutterSound: MediaActionSound? = null
 
     private val mainHandler = Handler(Looper.getMainLooper())
 
@@ -99,6 +101,7 @@ class ScreenshotService : Service() {
         mediaProjection?.registerCallback(callback, null)
 
         screenshotCapture = ScreenshotCapture()
+        shutterSound = MediaActionSound().apply { load(MediaActionSound.SHUTTER_CLICK) }
 
         widgetManager = FloatingWidgetManager(
             this,
@@ -120,6 +123,8 @@ class ScreenshotService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
+        shutterSound?.release()
+        shutterSound = null
         widgetManager?.cleanup()
         widgetManager = null
         val cb = mediaProjectionCallback
@@ -157,6 +162,9 @@ class ScreenshotService : Service() {
         android.util.Log.d("SCREENSHOT_CAPTURE_STARTED", "Launching async capture")
 
         mainHandler.postDelayed({
+            shutterSound?.play(MediaActionSound.SHUTTER_CLICK)
+            manager.showScreenFlash()
+
             capture.captureScreenshotAsync(projection, this@ScreenshotService) { result ->
                 manager.showFloatingIcon()
                 manager.setCaptureInProgress(false)

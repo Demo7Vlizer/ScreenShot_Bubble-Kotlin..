@@ -8,6 +8,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
+import android.view.animation.AccelerateDecelerateInterpolator
 import com.screenshotbubble.R
 
 class ScreenshotFeedback(
@@ -25,8 +26,8 @@ class ScreenshotFeedback(
 
         val view = LayoutInflater.from(context).inflate(R.layout.screenshot_feedback, null)
         view.alpha = 0f
-        view.scaleX = 0.85f
-        view.scaleY = 0.85f
+        view.scaleX = 0.7f
+        view.scaleY = 0.7f
 
         view.measure(
             View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
@@ -56,19 +57,29 @@ class ScreenshotFeedback(
 
         view.animate()
             .alpha(1f)
-            .scaleX(1f)
-            .scaleY(1f)
-            .setDuration(200)
+            .scaleX(1.05f)
+            .scaleY(1.05f)
+            .setDuration(180)
+            .setInterpolator(AccelerateDecelerateInterpolator())
             .withEndAction {
-                mainHandler.postDelayed({
-                    view.animate()
-                        .alpha(0f)
-                        .scaleX(0.85f)
-                        .scaleY(0.85f)
-                        .setDuration(250)
-                        .withEndAction { hide() }
-                        .start()
-                }, 900)
+                view.animate()
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .setDuration(80)
+                    .setInterpolator(AccelerateDecelerateInterpolator())
+                    .withEndAction {
+                        mainHandler.postDelayed({
+                            view.animate()
+                                .alpha(0f)
+                                .scaleX(0.7f)
+                                .scaleY(0.7f)
+                                .setDuration(220)
+                                .setInterpolator(AccelerateDecelerateInterpolator())
+                                .withEndAction { hide() }
+                                .start()
+                        }, 900)
+                    }
+                    .start()
             }
             .start()
     }

@@ -2899,6 +2899,7 @@ drawable bg_check_badge
 drawable bg_close_circle
 drawable bg_dashboard_card
 drawable bg_drag_indicator
+drawable bg_feedback_glass
 drawable bg_floating_circle
 drawable bg_header_circle
 drawable bg_indicator_line

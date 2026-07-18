@@ -24,6 +24,7 @@ class FloatingWidgetManager(
     private var dragHandler: DragHandler? = null
     private var toolbarController: ToolbarController? = null
     private var screenshotFeedback: ScreenshotFeedback? = null
+    private var screenFlashOverlay: ScreenFlashOverlay? = null
     private var positionPersistence: PositionPersistence? = null
 
     private var thumbnailPopup: View? = null
@@ -83,6 +84,7 @@ class FloatingWidgetManager(
         icon.alpha = 1.0f
 
         screenshotFeedback = ScreenshotFeedback(context, windowManager, density)
+        screenFlashOverlay = ScreenFlashOverlay(context, windowManager)
 
         toolbarController = ToolbarController(context, windowManager, density).apply {
             setOnItemClickListener { item ->
@@ -161,6 +163,10 @@ class FloatingWidgetManager(
         screenshotFeedback?.show(h.getCurrentX(), h.getCurrentY())
     }
 
+    fun showScreenFlash() {
+        screenFlashOverlay?.flash()
+    }
+
     fun showFloatingIcon() {
         floatingIcon?.visibility = View.VISIBLE
     }
@@ -223,20 +229,26 @@ class FloatingWidgetManager(
         thumbnailPopupParams = popupParams
 
         popup.alpha = 0f
+        popup.scaleX = 0.8f
+        popup.scaleY = 0.8f
         popup.animate()
             .alpha(1f)
-            .setDuration(150)
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(200)
             .start()
 
         popup.postDelayed({
             popup.animate()
                 .alpha(0f)
-                .setDuration(300)
+                .scaleX(0.8f)
+                .scaleY(0.8f)
+                .setDuration(250)
                 .withEndAction {
                     removeThumbnailPopup()
                 }
                 .start()
-        }, 2000)
+        }, 1500)
     }
 
     fun showErrorMessage(message: String) {
@@ -286,20 +298,26 @@ class FloatingWidgetManager(
         thumbnailPopupParams = popupParams
 
         popup.alpha = 0f
+        popup.scaleX = 0.8f
+        popup.scaleY = 0.8f
         popup.animate()
             .alpha(1f)
-            .setDuration(150)
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(200)
             .start()
 
         popup.postDelayed({
             popup.animate()
                 .alpha(0f)
-                .setDuration(300)
+                .scaleX(0.8f)
+                .scaleY(0.8f)
+                .setDuration(250)
                 .withEndAction {
                     removeThumbnailPopup()
                 }
                 .start()
-        }, 2000)
+        }, 1500)
     }
 
     fun performHaptic() {
@@ -321,6 +339,8 @@ class FloatingWidgetManager(
     fun cleanup() {
         savePosition()
         removeThumbnailPopup()
+        screenFlashOverlay?.hide()
+        screenFlashOverlay = null
         screenshotFeedback?.hide()
         screenshotFeedback = null
         toolbarController?.destroy()

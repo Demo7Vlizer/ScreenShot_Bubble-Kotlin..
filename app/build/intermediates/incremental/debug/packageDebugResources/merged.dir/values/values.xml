@@ -11,8 +11,8 @@
     <color name="success_green_light">#E8F8EE</color>
     <color name="surface">#FFFFFF</color>
     <color name="text_primary">#1C1B1F</color>
-    <color name="text_secondary">#8E93A6</color>
-    <color name="text_tertiary">#B0B4C4</color>
+    <color name="text_secondary">#5F6368</color>
+    <color name="text_tertiary">#80868B</color>
     <color name="white">#FFFFFF</color>
     <string name="all_set">You\'re all set!</string>
     <string name="app_name">Screenshot Bubble</string>
