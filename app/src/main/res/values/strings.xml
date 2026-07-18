@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Screenshot Bubble</string>
-    <string name="permission_overlay_desc">Allow floating icon to appear on top of other apps</string>
-    <string name="permission_capture_desc">Enable the ability to capture screenshots</string>
+    <string name="app_subtitle">Tap the floating icon to capture</string>
+    <string name="service_inactive">Service inactive</string>
+    <string name="service_active">Service running</string>
+
+    <string name="permission_overlay_title">Overlay Permission</string>
+    <string name="permission_overlay_desc">Allow floating icon on top of other apps</string>
+    <string name="permission_overlay_granted">Overlay granted</string>
+    <string name="permission_overlay_action">Allow overlay</string>
+
+    <string name="permission_capture_title">Screen Capture</string>
+    <string name="permission_capture_desc">Enable screenshot capability</string>
+    <string name="permission_capture_granted">Capture enabled</string>
+    <string name="permission_capture_action">Enable capture</string>
+
+    <string name="stats_title">Screenshots taken</string>
+    <string name="stats_empty">No screenshots yet</string>
+
+    <string name="service_start">Start Bubble</string>
+    <string name="service_stop">Stop Bubble</string>
+
+    <string name="all_set">You\'re all set!</string>
     <string name="button_allow_overlay">Allow floating icon</string>
     <string name="button_enable_capture">Enable screenshot capture</string>
-    <string name="all_set">You\'re all set!</string>
+
     <string name="notification_channel_name">Screenshot Service</string>
     <string name="notification_channel_desc">Shows when screenshot bubble is active</string>
     <string name="notification_text">Screenshot Bubble is active</string>

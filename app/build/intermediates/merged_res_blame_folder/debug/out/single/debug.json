@@ -4,6 +4,10 @@
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\floating_toolbar.xml"
     },
     {
+        "merged": "com.screenshotbubble.app-merged_res-31:/drawable_bg_dashboard_card.xml.flat",
+        "source": "com.screenshotbubble.app-main-33:/drawable/bg_dashboard_card.xml"
+    },
+    {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_check.xml.flat",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_check.xml"
     },
@@ -34,6 +38,14 @@
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_indicator_line.xml.flat",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\bg_indicator_line.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-merged_res-31:/drawable_ic_check_circle.xml.flat",
+        "source": "com.screenshotbubble.app-main-33:/drawable/ic_check_circle.xml"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\layout_screenshot_feedback.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\screenshot_feedback.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_check_badge.xml.flat",
@@ -78,10 +90,6 @@
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_toolbar_longshot.xml.flat",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_toolbar_longshot.xml"
-    },
-    {
-        "merged": "com.screenshotbubble.app-merged_res-31:/layout_screenshot_feedback.xml.flat",
-        "source": "com.screenshotbubble.app-main-33:/layout/screenshot_feedback.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_camera.xml.flat",
@@ -152,7 +160,15 @@
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
+        "merged": "com.screenshotbubble.app-merged_res-31:/drawable_bg_header_circle.xml.flat",
+        "source": "com.screenshotbubble.app-main-33:/drawable/bg_header_circle.xml"
+    },
+    {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "com.screenshotbubble.app-merged_res-31:/layout_activity_main.xml.flat",
+        "source": "com.screenshotbubble.app-main-33:/layout/activity_main.xml"
     }
 ]

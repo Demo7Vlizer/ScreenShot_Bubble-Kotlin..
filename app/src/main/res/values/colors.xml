@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary_blue">#4361EE</color>
+    <color name="primary_blue_light">#E8ECFD</color>
     <color name="close_red">#E63946</color>
+    <color name="close_red_light">#FDE8EA</color>
     <color name="success_green">#2DC653</color>
+    <color name="success_green_light">#E8F8EE</color>
     <color name="white">#FFFFFF</color>
+    <color name="background">#F5F6FA</color>
+    <color name="surface">#FFFFFF</color>
     <color name="text_primary">#1C1B1F</color>
-    <color name="text_secondary">#6B7280</color>
+    <color name="text_secondary">#8E93A6</color>
+    <color name="text_tertiary">#B0B4C4</color>
+    <color name="divider">#EBECF0</color>
+    <color name="card_shadow">#1A000000</color>
 </resources>

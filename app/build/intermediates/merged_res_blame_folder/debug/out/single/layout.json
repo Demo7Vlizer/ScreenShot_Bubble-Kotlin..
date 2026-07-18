@@ -4,10 +4,6 @@
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\drag_indicator.xml"
     },
     {
-        "merged": "com.screenshotbubble.app-mergeDebugResources-30:/layout/screenshot_feedback.xml",
-        "source": "com.screenshotbubble.app-main-33:/layout/screenshot_feedback.xml"
-    },
-    {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\toolbar_item.xml",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\toolbar_item.xml"
     },
@@ -22,6 +18,14 @@
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\thumbnail_popup.xml",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\thumbnail_popup.xml"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\screenshot_feedback.xml",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\screenshot_feedback.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-mergeDebugResources-30:/layout/activity_main.xml",
+        "source": "com.screenshotbubble.app-main-33:/layout/activity_main.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\activity_main.xml",

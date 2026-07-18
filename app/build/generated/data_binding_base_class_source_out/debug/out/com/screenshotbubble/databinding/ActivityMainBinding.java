@@ -4,7 +4,9 @@ package com.screenshotbubble.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,42 +20,108 @@ import java.lang.String;
 
 public final class ActivityMainBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final ScrollView rootView;
 
   @NonNull
-  public final LinearLayout allSetContainer;
+  public final TextView allSetBanner;
 
   @NonNull
-  public final MaterialButton buttonCapturePermission;
+  public final MaterialButton btnCapture;
 
   @NonNull
-  public final MaterialButton buttonOverlayPermission;
+  public final MaterialButton btnOverlay;
 
   @NonNull
-  public final TextView captureDescription;
+  public final MaterialButton btnService;
 
   @NonNull
-  public final TextView mainTitle;
+  public final TextView captureDesc;
 
   @NonNull
-  public final TextView overlayDescription;
+  public final ImageView captureIcon;
 
-  private ActivityMainBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout allSetContainer,
-      @NonNull MaterialButton buttonCapturePermission,
-      @NonNull MaterialButton buttonOverlayPermission, @NonNull TextView captureDescription,
-      @NonNull TextView mainTitle, @NonNull TextView overlayDescription) {
+  @NonNull
+  public final TextView captureTitle;
+
+  @NonNull
+  public final LinearLayout cardCapture;
+
+  @NonNull
+  public final LinearLayout cardOverlay;
+
+  @NonNull
+  public final LinearLayout cardStats;
+
+  @NonNull
+  public final LinearLayout headerSection;
+
+  @NonNull
+  public final TextView overlayDesc;
+
+  @NonNull
+  public final ImageView overlayIcon;
+
+  @NonNull
+  public final TextView overlayTitle;
+
+  @NonNull
+  public final TextView permissionsHeader;
+
+  @NonNull
+  public final LinearLayout permissionsSection;
+
+  @NonNull
+  public final TextView statsCount;
+
+  @NonNull
+  public final TextView statsHeader;
+
+  @NonNull
+  public final ImageView statsIcon;
+
+  @NonNull
+  public final TextView statsLabel;
+
+  @NonNull
+  public final TextView statusBadge;
+
+  private ActivityMainBinding(@NonNull ScrollView rootView, @NonNull TextView allSetBanner,
+      @NonNull MaterialButton btnCapture, @NonNull MaterialButton btnOverlay,
+      @NonNull MaterialButton btnService, @NonNull TextView captureDesc,
+      @NonNull ImageView captureIcon, @NonNull TextView captureTitle,
+      @NonNull LinearLayout cardCapture, @NonNull LinearLayout cardOverlay,
+      @NonNull LinearLayout cardStats, @NonNull LinearLayout headerSection,
+      @NonNull TextView overlayDesc, @NonNull ImageView overlayIcon, @NonNull TextView overlayTitle,
+      @NonNull TextView permissionsHeader, @NonNull LinearLayout permissionsSection,
+      @NonNull TextView statsCount, @NonNull TextView statsHeader, @NonNull ImageView statsIcon,
+      @NonNull TextView statsLabel, @NonNull TextView statusBadge) {
     this.rootView = rootView;
-    this.allSetContainer = allSetContainer;
-    this.buttonCapturePermission = buttonCapturePermission;
-    this.buttonOverlayPermission = buttonOverlayPermission;
-    this.captureDescription = captureDescription;
-    this.mainTitle = mainTitle;
-    this.overlayDescription = overlayDescription;
+    this.allSetBanner = allSetBanner;
+    this.btnCapture = btnCapture;
+    this.btnOverlay = btnOverlay;
+    this.btnService = btnService;
+    this.captureDesc = captureDesc;
+    this.captureIcon = captureIcon;
+    this.captureTitle = captureTitle;
+    this.cardCapture = cardCapture;
+    this.cardOverlay = cardOverlay;
+    this.cardStats = cardStats;
+    this.headerSection = headerSection;
+    this.overlayDesc = overlayDesc;
+    this.overlayIcon = overlayIcon;
+    this.overlayTitle = overlayTitle;
+    this.permissionsHeader = permissionsHeader;
+    this.permissionsSection = permissionsSection;
+    this.statsCount = statsCount;
+    this.statsHeader = statsHeader;
+    this.statsIcon = statsIcon;
+    this.statsLabel = statsLabel;
+    this.statusBadge = statusBadge;
   }
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public ScrollView getRoot() {
     return rootView;
   }
 
@@ -78,45 +146,136 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.all_set_container;
-      LinearLayout allSetContainer = ViewBindings.findChildViewById(rootView, id);
-      if (allSetContainer == null) {
+      id = R.id.all_set_banner;
+      TextView allSetBanner = ViewBindings.findChildViewById(rootView, id);
+      if (allSetBanner == null) {
         break missingId;
       }
 
-      id = R.id.button_capture_permission;
-      MaterialButton buttonCapturePermission = ViewBindings.findChildViewById(rootView, id);
-      if (buttonCapturePermission == null) {
+      id = R.id.btn_capture;
+      MaterialButton btnCapture = ViewBindings.findChildViewById(rootView, id);
+      if (btnCapture == null) {
         break missingId;
       }
 
-      id = R.id.button_overlay_permission;
-      MaterialButton buttonOverlayPermission = ViewBindings.findChildViewById(rootView, id);
-      if (buttonOverlayPermission == null) {
+      id = R.id.btn_overlay;
+      MaterialButton btnOverlay = ViewBindings.findChildViewById(rootView, id);
+      if (btnOverlay == null) {
         break missingId;
       }
 
-      id = R.id.capture_description;
-      TextView captureDescription = ViewBindings.findChildViewById(rootView, id);
-      if (captureDescription == null) {
+      id = R.id.btn_service;
+      MaterialButton btnService = ViewBindings.findChildViewById(rootView, id);
+      if (btnService == null) {
         break missingId;
       }
 
-      id = R.id.main_title;
-      TextView mainTitle = ViewBindings.findChildViewById(rootView, id);
-      if (mainTitle == null) {
+      id = R.id.capture_desc;
+      TextView captureDesc = ViewBindings.findChildViewById(rootView, id);
+      if (captureDesc == null) {
         break missingId;
       }
 
-      id = R.id.overlay_description;
-      TextView overlayDescription = ViewBindings.findChildViewById(rootView, id);
-      if (overlayDescription == null) {
+      id = R.id.capture_icon;
+      ImageView captureIcon = ViewBindings.findChildViewById(rootView, id);
+      if (captureIcon == null) {
         break missingId;
       }
 
-      return new ActivityMainBinding((LinearLayout) rootView, allSetContainer,
-          buttonCapturePermission, buttonOverlayPermission, captureDescription, mainTitle,
-          overlayDescription);
+      id = R.id.capture_title;
+      TextView captureTitle = ViewBindings.findChildViewById(rootView, id);
+      if (captureTitle == null) {
+        break missingId;
+      }
+
+      id = R.id.card_capture;
+      LinearLayout cardCapture = ViewBindings.findChildViewById(rootView, id);
+      if (cardCapture == null) {
+        break missingId;
+      }
+
+      id = R.id.card_overlay;
+      LinearLayout cardOverlay = ViewBindings.findChildViewById(rootView, id);
+      if (cardOverlay == null) {
+        break missingId;
+      }
+
+      id = R.id.card_stats;
+      LinearLayout cardStats = ViewBindings.findChildViewById(rootView, id);
+      if (cardStats == null) {
+        break missingId;
+      }
+
+      id = R.id.header_section;
+      LinearLayout headerSection = ViewBindings.findChildViewById(rootView, id);
+      if (headerSection == null) {
+        break missingId;
+      }
+
+      id = R.id.overlay_desc;
+      TextView overlayDesc = ViewBindings.findChildViewById(rootView, id);
+      if (overlayDesc == null) {
+        break missingId;
+      }
+
+      id = R.id.overlay_icon;
+      ImageView overlayIcon = ViewBindings.findChildViewById(rootView, id);
+      if (overlayIcon == null) {
+        break missingId;
+      }
+
+      id = R.id.overlay_title;
+      TextView overlayTitle = ViewBindings.findChildViewById(rootView, id);
+      if (overlayTitle == null) {
+        break missingId;
+      }
+
+      id = R.id.permissions_header;
+      TextView permissionsHeader = ViewBindings.findChildViewById(rootView, id);
+      if (permissionsHeader == null) {
+        break missingId;
+      }
+
+      id = R.id.permissions_section;
+      LinearLayout permissionsSection = ViewBindings.findChildViewById(rootView, id);
+      if (permissionsSection == null) {
+        break missingId;
+      }
+
+      id = R.id.stats_count;
+      TextView statsCount = ViewBindings.findChildViewById(rootView, id);
+      if (statsCount == null) {
+        break missingId;
+      }
+
+      id = R.id.stats_header;
+      TextView statsHeader = ViewBindings.findChildViewById(rootView, id);
+      if (statsHeader == null) {
+        break missingId;
+      }
+
+      id = R.id.stats_icon;
+      ImageView statsIcon = ViewBindings.findChildViewById(rootView, id);
+      if (statsIcon == null) {
+        break missingId;
+      }
+
+      id = R.id.stats_label;
+      TextView statsLabel = ViewBindings.findChildViewById(rootView, id);
+      if (statsLabel == null) {
+        break missingId;
+      }
+
+      id = R.id.status_badge;
+      TextView statusBadge = ViewBindings.findChildViewById(rootView, id);
+      if (statusBadge == null) {
+        break missingId;
+      }
+
+      return new ActivityMainBinding((ScrollView) rootView, allSetBanner, btnCapture, btnOverlay,
+          btnService, captureDesc, captureIcon, captureTitle, cardCapture, cardOverlay, cardStats,
+          headerSection, overlayDesc, overlayIcon, overlayTitle, permissionsHeader,
+          permissionsSection, statsCount, statsHeader, statsIcon, statsLabel, statusBadge);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

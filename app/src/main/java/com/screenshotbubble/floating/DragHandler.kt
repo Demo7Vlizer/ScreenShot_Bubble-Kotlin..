@@ -58,7 +58,7 @@ class DragHandler(
     var lastMagneticZone: MagneticZone = MagneticZone.MIDDLE_RIGHT
 
     private val iconSizePx: Int = dpToPx(48)
-    val edgeVisiblePx: Int = dpToPx(14)
+    val edgeVisiblePx: Int = dpToPx(24)
     private val marginPx: Int = dpToPx(4)
     private var safeTopInset = 0
     private var safeBottomInset = 0
@@ -176,18 +176,18 @@ class DragHandler(
                     val zone = snapToMagneticZone()
                     callbacks.onDragEnd(zone)
                     performHaptic()
-                    v.animate().scaleX(1f).scaleY(1f).alpha(0.7f).setDuration(150).start()
+                    v.animate().scaleX(1f).scaleY(1f).alpha(1.0f).setDuration(150).start()
                     startEdgePeek()
                     android.util.Log.d("TOUCH_UP", "DRAG mode — no screenshot")
                 } else if (totalMovement < dpToPx(DRAG_THRESHOLD_DP) && touchDuration < CLICK_THRESHOLD_MS) {
-                    v.animate().scaleX(1f).scaleY(1f).alpha(0.7f).setDuration(150).start()
+                    v.animate().scaleX(1f).scaleY(1f).alpha(1.0f).setDuration(150).start()
                     android.util.Log.d("CLICK_DETECTED", "movement=${totalMovement.toInt()}px duration=${touchDuration}ms — calling onTap")
                     callbacks.onTap()
                     startEdgePeek()
                     android.util.Log.d("TOUCH_UP", "CLICK mode — screenshot triggered")
                 } else {
                     android.util.Log.d("TOUCH_UP", "NEITHER mode — movement=${totalMovement.toInt()}px duration=${touchDuration}ms isDragging=$isDragging")
-                    v.animate().scaleX(1f).scaleY(1f).alpha(0.7f).setDuration(150).start()
+                    v.animate().scaleX(1f).scaleY(1f).alpha(1.0f).setDuration(150).start()
                     startEdgePeek()
                 }
 
@@ -210,7 +210,7 @@ class DragHandler(
     }
 
     private fun applyIdleAlpha() {
-        iconView.alpha = 0.7f
+        iconView.alpha = 1.0f
     }
 
     private fun snapUndockedPosition() {

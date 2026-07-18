@@ -58,7 +58,7 @@ class FloatingWidgetManager(
             initialY = restored.y
             initialPosition = restored.position
         } else {
-            initialX = screenSize.x - dpToPx(14)
+            initialX = screenSize.x - dpToPx(24)
             initialY = screenSize.y / 3
             initialPosition = DockPosition.RIGHT
         }
@@ -80,7 +80,7 @@ class FloatingWidgetManager(
         windowManager.addView(icon, iconParams)
         floatingIcon = icon
 
-        icon.alpha = 0.7f
+        icon.alpha = 1.0f
 
         screenshotFeedback = ScreenshotFeedback(context, windowManager, density)
 
