@@ -4,11 +4,13 @@ import android.content.Context
 import android.graphics.PixelFormat
 import android.graphics.Point
 import android.net.Uri
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import com.screenshotbubble.R
@@ -46,6 +48,7 @@ class FloatingWidgetManager(
 
     private val dockedWidthPx: Int = dpToPx(48)
     private val expandedWidthPx: Int = dpToPx(56)
+    private val marginPx: Int = dpToPx(4)
 
     private val modules: Map<Int, FeatureModule> = mapOf(
         1 to ScreenshotModule(),
@@ -62,6 +65,10 @@ class FloatingWidgetManager(
         val icon = LayoutInflater.from(context).inflate(R.layout.floating_icon, null)
         val screenSize = getScreenSize()
 
+        val safeTop = safeInsetTop()
+        val safeBottom = safeInsetBottom()
+        val iconH = expandedWidthPx
+
         val initialX: Int
         val initialY: Int
         val initialPosition: DockPosition
@@ -69,16 +76,27 @@ class FloatingWidgetManager(
         if (restored != null) {
             val maxX = (screenSize.x - dockedWidthPx).coerceAtLeast(0)
             initialX = restored.x.coerceIn(0, maxX)
-            initialY = restored.y
+            initialY = restored.y.coerceIn(
+                safeTop + marginPx,
+                screenSize.y - iconH - safeBottom - marginPx
+            )
             initialPosition = restored.position
+            android.util.Log.d("POSITION_RESTORED",
+                "screen=${screenSize.x}x${screenSize.y} " +
+                "restored_x=${restored.x} restored_y=${restored.y} " +
+                "clamped_x=$initialX clamped_y=$initialY " +
+                "position=$initialPosition")
         } else {
             initialX = (screenSize.x - dockedWidthPx).coerceAtLeast(0)
             initialY = screenSize.y / 3
             initialPosition = DockPosition.RIGHT
+            android.util.Log.d("POSITION_RESTORED",
+                "no_saved_data initial_x=$initialX initial_y=$initialY " +
+                "screen=${screenSize.x}x${screenSize.y}")
         }
 
         iconParams = WindowManager.LayoutParams(
-            WindowManager.LayoutParams.WRAP_CONTENT,
+            dockedWidthPx,
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
@@ -93,14 +111,6 @@ class FloatingWidgetManager(
 
         windowManager.addView(icon, iconParams)
         floatingIcon = icon
-
-        iconParams?.width = dockedWidthPx
-        iconParams?.x = when (initialPosition) {
-            DockPosition.LEFT -> 0
-            DockPosition.RIGHT -> (screenSize.x - dockedWidthPx).coerceAtLeast(0)
-            DockPosition.NONE -> initialX
-        }
-        try { windowManager.updateViewLayout(icon, iconParams) } catch (_: Exception) {}
 
         icon.alpha = 1.0f
 
@@ -309,6 +319,9 @@ class FloatingWidgetManager(
         val screenSize = getScreenSize()
         val maxX = (screenSize.x - dockedWidthPx).coerceAtLeast(0)
         val clampedX = h.getCurrentX().coerceIn(0, maxX)
+        android.util.Log.d("SAVE_POSITION",
+            "current_x=${h.getCurrentX()} current_y=${h.getCurrentY()} " +
+            "clamped_x=$clampedX position=${h.dockPosition}")
         positionPersistence?.savePosition(clampedX, h.getCurrentY(), h.dockPosition)
     }
 
@@ -527,6 +540,39 @@ class FloatingWidgetManager(
         }
         thumbnailPopup = null
         thumbnailPopupParams = null
+    }
+
+    private fun safeInsetTop(): Int {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                windowManager.currentWindowMetrics.windowInsets.getInsets(
+                    WindowInsets.Type.statusBars() or WindowInsets.Type.displayCutout()
+                ).top
+            } catch (_: Exception) {
+                getSystemDimension("status_bar_height")
+            }
+        } else {
+            getSystemDimension("status_bar_height")
+        }.coerceAtLeast(dpToPx(24))
+    }
+
+    private fun safeInsetBottom(): Int {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                windowManager.currentWindowMetrics.windowInsets.getInsets(
+                    WindowInsets.Type.navigationBars()
+                ).bottom
+            } catch (_: Exception) {
+                getSystemDimension("navigation_bar_height")
+            }
+        } else {
+            getSystemDimension("navigation_bar_height")
+        }.coerceAtLeast(dpToPx(16))
+    }
+
+    private fun getSystemDimension(name: String): Int {
+        val resourceId = context.resources.getIdentifier(name, "dimen", "android")
+        return if (resourceId > 0) context.resources.getDimensionPixelSize(resourceId) else 0
     }
 
     private fun getScreenSize(): Point {

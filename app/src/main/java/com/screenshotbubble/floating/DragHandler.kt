@@ -90,13 +90,24 @@ class DragHandler(
 
     fun initialize(x: Int, y: Int, position: DockPosition) {
         resolveSafeInsets()
-        iconParams.width = expandedWidthPx
         val screenSize = getScreenSize()
-        iconParams.x = x.coerceIn(0, screenSize.x - iconWidth)
-        iconParams.y = y.coerceIn(safeTopInset + marginPx, screenSize.y - iconHeight - safeBottomInset - marginPx)
         dockPosition = position
         floatingState = FloatingState.IDLE
-        lastMagneticZone = resolveZone(x, y)
+
+        val isDocked = position != DockPosition.NONE
+        iconParams.width = if (isDocked) dockedWidthPx else expandedWidthPx
+
+        iconParams.x = when (position) {
+            DockPosition.LEFT -> 0
+            DockPosition.RIGHT -> (screenSize.x - iconParams.width).coerceAtLeast(0)
+            DockPosition.NONE -> x.coerceIn(0, screenSize.x - iconParams.width)
+        }
+        iconParams.y = y.coerceIn(
+            safeTopInset + marginPx,
+            screenSize.y - iconHeight - safeBottomInset - marginPx
+        )
+
+        lastMagneticZone = resolveZone(iconParams.x, iconParams.y)
         lastGravitySide = position
         try { windowManager.updateViewLayout(iconView, iconParams) } catch (_: Exception) {}
         applyDockAlpha()

@@ -15,6 +15,7 @@ class PositionPersistence(context: Context) {
     }
 
     fun savePosition(x: Int, y: Int, position: DockPosition) {
+        android.util.Log.d("POSITION_SAVED", "x=$x y=$y position=$position")
         prefs.edit()
             .putInt(KEY_LAST_X, x)
             .putInt(KEY_LAST_Y, y)
@@ -32,6 +33,7 @@ class PositionPersistence(context: Context) {
         } catch (_: Exception) {
             DockPosition.RIGHT
         }
+        android.util.Log.d("POSITION_RESTORED", "restored_x=$x restored_y=$y position=$position")
         return PositionData(x, y, position)
     }
 
