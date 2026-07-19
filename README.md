@@ -1,6 +1,5 @@
 <div align="center">
-  <img src="app/src/main/res/drawable/ic_bubble_logo.xml" width="80" height="80" alt="Screenshot Bubble Logo">
-  <h1>Screenshot Bubble</h1>
+  <h1>📸 Screenshot Bubble</h1>
   <p><strong>Capture from anywhere</strong></p>
 
   <p>
