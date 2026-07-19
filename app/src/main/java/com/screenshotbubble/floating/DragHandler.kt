@@ -63,7 +63,7 @@ class DragHandler(
 
     private val iconSizePx: Int = dpToPx(48)
     val expandedWidthPx: Int = dpToPx(56)
-    val dockedWidthPx: Int = dpToPx(7)
+    val dockedWidthPx: Int = dpToPx(48)
     private val marginPx: Int = dpToPx(4)
     private var safeTopInset = 0
     private var safeBottomInset = 0

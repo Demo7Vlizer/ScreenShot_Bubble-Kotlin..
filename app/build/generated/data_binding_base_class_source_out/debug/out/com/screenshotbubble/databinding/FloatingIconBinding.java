@@ -28,12 +28,16 @@ public final class FloatingIconBinding implements ViewBinding {
   @NonNull
   public final View handlePill;
 
+  @NonNull
+  public final View touchTarget;
+
   private FloatingIconBinding(@NonNull FrameLayout rootView, @NonNull FrameLayout cameraContainer,
-      @NonNull ImageView floatingIconCamera, @NonNull View handlePill) {
+      @NonNull ImageView floatingIconCamera, @NonNull View handlePill, @NonNull View touchTarget) {
     this.rootView = rootView;
     this.cameraContainer = cameraContainer;
     this.floatingIconCamera = floatingIconCamera;
     this.handlePill = handlePill;
+    this.touchTarget = touchTarget;
   }
 
   @Override
@@ -81,8 +85,14 @@ public final class FloatingIconBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.touch_target;
+      View touchTarget = ViewBindings.findChildViewById(rootView, id);
+      if (touchTarget == null) {
+        break missingId;
+      }
+
       return new FloatingIconBinding((FrameLayout) rootView, cameraContainer, floatingIconCamera,
-          handlePill);
+          handlePill, touchTarget);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

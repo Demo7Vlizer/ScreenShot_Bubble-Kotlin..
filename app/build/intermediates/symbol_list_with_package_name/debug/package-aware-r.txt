@@ -3558,6 +3558,7 @@ id toolbar_items_container
 id top
 id topPanel
 id touch_outside
+id touch_target
 id transitionToEnd
 id transitionToStart
 id transition_current_scene

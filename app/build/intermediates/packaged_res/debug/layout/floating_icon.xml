@@ -7,9 +7,18 @@
     android:stateListAnimator="@null">
 
     <View
+        android:id="@+id/touch_target"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:clickable="false"
+        android:focusable="false" />
+
+    <View
         android:id="@+id/handle_pill"
-        android:layout_width="5dp"
-        android:layout_height="44dp"
+        android:layout_width="6dp"
+        android:layout_height="48dp"
         android:layout_gravity="center"
         android:background="@drawable/bg_handle"
         android:visibility="visible" />

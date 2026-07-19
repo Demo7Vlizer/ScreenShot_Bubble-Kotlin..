@@ -147,6 +147,7 @@ id title_text
 id toolbar_item_icon
 id toolbar_item_label
 id toolbar_items_container
+id touch_target
 id version_text
 layout activity_main
 layout bottom_sheet_screenshot_mode

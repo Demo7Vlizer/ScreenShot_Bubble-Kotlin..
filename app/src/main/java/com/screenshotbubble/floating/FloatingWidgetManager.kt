@@ -44,7 +44,7 @@ class FloatingWidgetManager(
     private val autoHideHandler = Handler(Looper.getMainLooper())
     private val autoHideDelayMs = 3000L
 
-    private val dockedWidthPx: Int = dpToPx(7)
+    private val dockedWidthPx: Int = dpToPx(48)
     private val expandedWidthPx: Int = dpToPx(56)
 
     private val modules: Map<Int, FeatureModule> = mapOf(
