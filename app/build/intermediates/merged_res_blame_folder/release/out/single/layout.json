@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "com.screenshotbubble.app-mergeReleaseResources-30:/layout/close_target.xml",
+        "source": "com.screenshotbubble.app-main-32:/layout/close_target.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-mergeReleaseResources-30:/layout/toolbar_item.xml",
+        "source": "com.screenshotbubble.app-main-32:/layout/toolbar_item.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-mergeReleaseResources-30:/layout/drag_indicator.xml",
+        "source": "com.screenshotbubble.app-main-32:/layout/drag_indicator.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-mergeReleaseResources-30:/layout/floating_toolbar.xml",
+        "source": "com.screenshotbubble.app-main-32:/layout/floating_toolbar.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-mergeReleaseResources-30:/layout/thumbnail_popup.xml",
+        "source": "com.screenshotbubble.app-main-32:/layout/thumbnail_popup.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-mergeReleaseResources-30:/layout/bottom_sheet_screenshot_mode.xml",
+        "source": "com.screenshotbubble.app-main-32:/layout/bottom_sheet_screenshot_mode.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-mergeReleaseResources-30:/layout/countdown_overlay.xml",
+        "source": "com.screenshotbubble.app-main-32:/layout/countdown_overlay.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-mergeReleaseResources-30:/layout/activity_main.xml",
+        "source": "com.screenshotbubble.app-main-32:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-mergeReleaseResources-30:/layout/bottom_sheet_theme.xml",
+        "source": "com.screenshotbubble.app-main-32:/layout/bottom_sheet_theme.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-mergeReleaseResources-30:/layout/floating_icon.xml",
+        "source": "com.screenshotbubble.app-main-32:/layout/floating_icon.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-mergeReleaseResources-30:/layout/screenshot_feedback.xml",
+        "source": "com.screenshotbubble.app-main-32:/layout/screenshot_feedback.xml"
+    }
+]
