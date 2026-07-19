@@ -2956,6 +2956,7 @@ drawable bg_dashboard_card
 drawable bg_drag_indicator
 drawable bg_feedback_glass
 drawable bg_floating_circle
+drawable bg_handle
 drawable bg_header_circle
 drawable bg_indicator_line
 drawable bg_popup_card
@@ -3181,6 +3182,7 @@ id btn_capture
 id btn_overlay
 id btn_service
 id buttonPanel
+id camera_container
 id cancel_button
 id capture_badge
 id capture_icon
@@ -3282,6 +3284,7 @@ id graph
 id graph_wrap
 id group_divider
 id groups
+id handle_pill
 id header_icon
 id header_title
 id hide_ime_id

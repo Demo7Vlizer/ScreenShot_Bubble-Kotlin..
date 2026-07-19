@@ -75,6 +75,7 @@ drawable bg_dashboard_card
 drawable bg_drag_indicator
 drawable bg_feedback_glass
 drawable bg_floating_circle
+drawable bg_handle
 drawable bg_header_circle
 drawable bg_indicator_line
 drawable bg_popup_card
@@ -105,6 +106,7 @@ id appearance_title
 id btn_capture
 id btn_overlay
 id btn_service
+id camera_container
 id capture_badge
 id capture_icon
 id capture_row
@@ -113,6 +115,7 @@ id countdown_text
 id feedback_text
 id floating_icon_camera
 id floating_service_row
+id handle_pill
 id header_icon
 id mode_10s
 id mode_3s

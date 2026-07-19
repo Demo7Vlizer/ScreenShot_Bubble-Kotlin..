@@ -20,12 +20,20 @@ public final class FloatingIconBinding implements ViewBinding {
   private final FrameLayout rootView;
 
   @NonNull
+  public final FrameLayout cameraContainer;
+
+  @NonNull
   public final ImageView floatingIconCamera;
 
-  private FloatingIconBinding(@NonNull FrameLayout rootView,
-      @NonNull ImageView floatingIconCamera) {
+  @NonNull
+  public final View handlePill;
+
+  private FloatingIconBinding(@NonNull FrameLayout rootView, @NonNull FrameLayout cameraContainer,
+      @NonNull ImageView floatingIconCamera, @NonNull View handlePill) {
     this.rootView = rootView;
+    this.cameraContainer = cameraContainer;
     this.floatingIconCamera = floatingIconCamera;
+    this.handlePill = handlePill;
   }
 
   @Override
@@ -55,13 +63,26 @@ public final class FloatingIconBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.camera_container;
+      FrameLayout cameraContainer = ViewBindings.findChildViewById(rootView, id);
+      if (cameraContainer == null) {
+        break missingId;
+      }
+
       id = R.id.floating_icon_camera;
       ImageView floatingIconCamera = ViewBindings.findChildViewById(rootView, id);
       if (floatingIconCamera == null) {
         break missingId;
       }
 
-      return new FloatingIconBinding((FrameLayout) rootView, floatingIconCamera);
+      id = R.id.handle_pill;
+      View handlePill = ViewBindings.findChildViewById(rootView, id);
+      if (handlePill == null) {
+        break missingId;
+      }
+
+      return new FloatingIconBinding((FrameLayout) rootView, cameraContainer, floatingIconCamera,
+          handlePill);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

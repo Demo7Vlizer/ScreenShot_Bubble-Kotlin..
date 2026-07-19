@@ -12,6 +12,10 @@
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\close_target.xml"
     },
     {
+        "merged": "com.screenshotbubble.app-mergeDebugResources-30:/layout/floating_icon.xml",
+        "source": "com.screenshotbubble.app-main-33:/layout/floating_icon.xml"
+    },
+    {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\floating_toolbar.xml",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\floating_toolbar.xml"
     },
@@ -26,10 +30,6 @@
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\drag_indicator.xml",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\drag_indicator.xml"
-    },
-    {
-        "merged": "com.screenshotbubble.app-mergeDebugResources-30:/layout/countdown_overlay.xml",
-        "source": "com.screenshotbubble.app-main-33:/layout/countdown_overlay.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\toolbar_item.xml",

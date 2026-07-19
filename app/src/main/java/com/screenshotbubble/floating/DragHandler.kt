@@ -33,6 +33,7 @@ class DragHandler(
         fun onDragEnd(zone: MagneticZone)
         fun onTap()
         fun onUndock()
+        fun onGravityChanged(position: DockPosition)
     }
 
     companion object {
@@ -61,7 +62,8 @@ class DragHandler(
     var lastMagneticZone: MagneticZone = MagneticZone.MIDDLE_RIGHT
 
     private val iconSizePx: Int = dpToPx(48)
-    val edgeVisiblePx: Int = dpToPx(24)
+    val expandedWidthPx: Int = dpToPx(56)
+    val dockedWidthPx: Int = dpToPx(7)
     private val marginPx: Int = dpToPx(4)
     private var safeTopInset = 0
     private var safeBottomInset = 0
@@ -70,23 +72,44 @@ class DragHandler(
         context.getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
 
     val iconWidth: Int
-        get() = iconView.width.coerceAtLeast(iconSizePx)
+        get() = iconView.width.coerceAtLeast(dockedWidthPx)
 
     val iconHeight: Int
         get() = iconView.height.coerceAtLeast(iconSizePx)
 
+    private val TAG = "DRAG"
+
+    private var lastGravitySide: DockPosition? = null
+
+    private fun syncHandleGravity(position: DockPosition) {
+        if (lastGravitySide != position) {
+            lastGravitySide = position
+            callbacks.onGravityChanged(position)
+        }
+    }
+
     fun initialize(x: Int, y: Int, position: DockPosition) {
         resolveSafeInsets()
-        iconParams.x = x
-        iconParams.y = y
+        iconParams.width = expandedWidthPx
+        val screenSize = getScreenSize()
+        iconParams.x = x.coerceIn(0, screenSize.x - iconWidth)
+        iconParams.y = y.coerceIn(safeTopInset + marginPx, screenSize.y - iconHeight - safeBottomInset - marginPx)
         dockPosition = position
         floatingState = FloatingState.IDLE
         lastMagneticZone = resolveZone(x, y)
+        lastGravitySide = position
         try { windowManager.updateViewLayout(iconView, iconParams) } catch (_: Exception) {}
         applyDockAlpha()
         startIdleBreathing()
         startEdgePeek()
     }
+
+    private fun getMinX(): Int = 0
+
+    private fun getMaxX(screenSize: Point): Int = (screenSize.x - iconWidth).coerceAtLeast(0)
+
+    private fun clampX(x: Int, screenSize: Point): Int =
+        x.coerceIn(getMinX(), getMaxX(screenSize))
 
     private fun resolveSafeInsets() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -134,7 +157,6 @@ class DragHandler(
                 callbacks.onUndock()
 
                 iconView.animate().scaleX(0.92f).scaleY(0.92f).alpha(1.0f).setDuration(150).start()
-                android.util.Log.d("TOUCH_DOWN", "rawXY=(${event.rawX.toInt()},${event.rawY.toInt()}) viewXY=(${iconParams.x},${iconParams.y}) docked=${dockPosition != DockPosition.NONE}")
                 return true
             }
 
@@ -156,18 +178,19 @@ class DragHandler(
                     }
                     callbacks.onDragStart()
                     v.animate().scaleX(1f).scaleY(1f).setDuration(100).start()
-                    android.util.Log.d("DRAG_STARTED", "movement=${totalMovement.toInt()}px threshold=${dpToPx(DRAG_THRESHOLD_DP)}px")
                 }
 
                 if (isDragging) {
                     val screenSize = getScreenSize()
-                    iconParams.x = (initialViewX + dx).toInt()
-                        .coerceIn(-iconWidth + edgeVisiblePx, screenSize.x - edgeVisiblePx)
+                    val rawX = (initialViewX + dx).toInt()
+                    iconParams.x = clampX(rawX, screenSize)
                     iconParams.y = (initialViewY + dy).toInt()
                         .coerceIn(safeTopInset + marginPx, screenSize.y - iconHeight - safeBottomInset - marginPx)
                     try { windowManager.updateViewLayout(iconView, iconParams) } catch (_: Exception) {}
-                } else {
-                    android.util.Log.d("TOUCH_MOVE", "movement=${totalMovement.toInt()}px not yet dragging")
+
+                    if (dockPosition == DockPosition.NONE) {
+                        syncHandleGravity(getEdge())
+                    }
                 }
 
                 return true
@@ -177,7 +200,6 @@ class DragHandler(
                 val touchDuration = System.currentTimeMillis() - touchDownTime
 
                 if (isDragging) {
-                    android.util.Log.d("DRAG_ENDED", "duration=${touchDuration}ms movement=${totalMovement.toInt()}px")
                     val zone = snapToMagneticZone()
                     callbacks.onDragEnd(zone)
                     performHaptic()
@@ -185,17 +207,13 @@ class DragHandler(
                         .withEndAction { startIdleBreathing() }
                         .start()
                     startEdgePeek()
-                    android.util.Log.d("TOUCH_UP", "DRAG mode — no screenshot")
                 } else if (totalMovement < dpToPx(DRAG_THRESHOLD_DP) && touchDuration < CLICK_THRESHOLD_MS) {
                     v.animate().scaleX(1f).scaleY(1f).alpha(1.0f).setDuration(150)
                         .withEndAction { startIdleBreathing() }
                         .start()
-                    android.util.Log.d("CLICK_DETECTED", "movement=${totalMovement.toInt()}px duration=${touchDuration}ms — calling onTap")
                     callbacks.onTap()
                     startEdgePeek()
-                    android.util.Log.d("TOUCH_UP", "CLICK mode — screenshot triggered")
                 } else {
-                    android.util.Log.d("TOUCH_UP", "NEITHER mode — movement=${totalMovement.toInt()}px duration=${touchDuration}ms isDragging=$isDragging")
                     v.animate().scaleX(1f).scaleY(1f).alpha(1.0f).setDuration(150)
                         .withEndAction { startIdleBreathing() }
                         .start()
@@ -250,20 +268,27 @@ class DragHandler(
 
     private fun snapUndockedPosition() {
         val screenSize = getScreenSize()
+        val handleWidthPx = dpToPx(5)
         val isLeft = dockPosition == DockPosition.LEFT
-        val targetX = if (isLeft) marginPx else screenSize.x - iconWidth - marginPx
-        iconParams.x = targetX
+
+        iconParams.width = expandedWidthPx
+
+        val targetX = if (isLeft) {
+            0
+        } else {
+            (screenSize.x - expandedWidthPx).coerceAtLeast(0)
+        }
+        iconParams.x = clampX(targetX, screenSize)
         try { windowManager.updateViewLayout(iconView, iconParams) } catch (_: Exception) {}
         dockPosition = DockPosition.NONE
+        syncHandleGravity(getEdge())
     }
 
     private fun undockFromEdge() {
         val screenSize = getScreenSize()
-        val targetX: Int
         val startX = iconParams.x
-
         val isLeft = dockPosition == DockPosition.LEFT
-        targetX = if (isLeft) marginPx else screenSize.x - iconWidth - marginPx
+        val targetX = clampX(if (isLeft) marginPx else screenSize.x - iconWidth - marginPx, screenSize)
 
         val dx = targetX - startX
         if (abs(dx) < dpToPx(2)) return
@@ -286,6 +311,7 @@ class DragHandler(
         }
 
         dockPosition = DockPosition.NONE
+        syncHandleGravity(DockPosition.NONE)
     }
 
     fun getCurrentX(): Int = iconParams.x
@@ -311,17 +337,28 @@ class DragHandler(
             }
         }
 
-        val (targetX, targetY) = getTargetForZone(bestZone, screenSize)
-
-        animateToPosition(targetX, targetY)
-        lastMagneticZone = bestZone
         dockPosition = if (bestZone.name.endsWith("_LEFT")) DockPosition.LEFT else DockPosition.RIGHT
+        syncHandleGravity(dockPosition)
+
+        dockToEdge(screenSize)
+        lastMagneticZone = bestZone
         return bestZone
     }
 
+    private fun dockToEdge(screenSize: Point) {
+        val isLeft = dockPosition == DockPosition.LEFT
+
+        iconParams.width = dockedWidthPx
+
+        val targetX = if (isLeft) 0 else (screenSize.x - dockedWidthPx).coerceAtLeast(0)
+        iconParams.x = targetX
+        try { windowManager.updateViewLayout(iconView, iconParams) } catch (_: Exception) {}
+        applyDockAlpha()
+    }
+
     private fun generateZoneCenters(screenSize: Point): List<Triple<MagneticZone, Float, Float>> {
-        val leftX = -(iconWidth - edgeVisiblePx) + iconWidth / 2f
-        val rightX = screenSize.x - edgeVisiblePx + iconWidth / 2f
+        val leftX = screenSize.x / 4f
+        val rightX = 3f * screenSize.x / 4f
         val thirdH = safeTopInset + (screenSize.y - safeTopInset - safeBottomInset) / 3f
         val bottomY = screenSize.y - iconHeight / 2f - safeBottomInset
 
@@ -336,11 +373,7 @@ class DragHandler(
     }
 
     private fun getTargetForZone(zone: MagneticZone, screenSize: Point): Pair<Int, Int> {
-        val x = if (zone.name.endsWith("_LEFT")) {
-            -iconWidth + edgeVisiblePx
-        } else {
-            screenSize.x - edgeVisiblePx
-        }
+        val x = if (zone.name.endsWith("_LEFT")) 0 else (screenSize.x - dockedWidthPx).coerceAtLeast(0)
         val y = when (zone) {
             MagneticZone.TOP_LEFT, MagneticZone.TOP_RIGHT -> safeTopInset + marginPx
             MagneticZone.MIDDLE_LEFT, MagneticZone.MIDDLE_RIGHT ->
@@ -351,40 +384,16 @@ class DragHandler(
         return Pair(x, y)
     }
 
-    private fun animateToPosition(targetX: Int, targetY: Int) {
+    private fun animateToPosition(targetX: Int, targetY: Int, screenSize: Point) {
         val startX = iconParams.x
         val startY = iconParams.y
-        val dx = targetX - startX
+        val clampedTargetX = clampX(targetX, screenSize)
+        val dx = clampedTargetX - startX
         val dy = targetY - startY
 
         if (abs(dx) < dpToPx(2) && abs(dy) < dpToPx(2)) {
-            iconParams.x = targetX
-            iconParams.y = targetY
-            try { windowManager.updateViewLayout(iconView, iconParams) } catch (_: Exception) {}
-            applyDockAlpha()
+            dockToEdge(screenSize)
             return
-        }
-
-        snapAnimator?.cancel()
-        snapAnimator = ValueAnimator.ofFloat(0f, 1f).apply {
-            duration = 350
-            interpolator = DecelerateInterpolator(1.5f)
-            addUpdateListener { anim ->
-                val f = anim.animatedFraction
-                val eased = 1f - (1f - f) * (1f - f)
-                iconParams.x = (startX + dx * eased).toInt()
-                iconParams.y = (startY + dy * eased).toInt()
-                try { windowManager.updateViewLayout(iconView, iconParams) } catch (_: Exception) {}
-            }
-            addListener(object : android.animation.AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    iconParams.x = targetX
-                    iconParams.y = targetY
-                    try { windowManager.updateViewLayout(iconView, iconParams) } catch (_: Exception) {}
-                    applyDockAlpha()
-                }
-            })
-            start()
         }
     }
 
@@ -448,7 +457,7 @@ class DragHandler(
     fun onConfigurationChanged() {
         resolveSafeInsets()
         val screenSize = getScreenSize()
-        iconParams.x = iconParams.x.coerceIn(-iconWidth + edgeVisiblePx, screenSize.x - edgeVisiblePx)
+        iconParams.x = clampX(iconParams.x, screenSize)
         iconParams.y = iconParams.y.coerceIn(safeTopInset + marginPx, screenSize.y - iconHeight - safeBottomInset - marginPx)
         try { windowManager.updateViewLayout(iconView, iconParams) } catch (_: Exception) {}
     }

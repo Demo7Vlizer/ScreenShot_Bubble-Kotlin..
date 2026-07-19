@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.PixelFormat
 import android.graphics.Point
 import android.net.Uri
+import android.os.Handler
+import android.os.Looper
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,7 @@ import android.widget.Toast
 import com.screenshotbubble.R
 import com.screenshotbubble.features.FeatureModule
 import com.screenshotbubble.features.modules.*
+import android.widget.FrameLayout
 
 class FloatingWidgetManager(
     private val context: Context,
@@ -35,6 +38,15 @@ class FloatingWidgetManager(
     private var lastScreenshotTimeMs = 0L
     private val screenshotDebounceMs = 500L
 
+    private var handleView: View? = null
+    private var cameraContainer: View? = null
+    private var isExpanded = false
+    private val autoHideHandler = Handler(Looper.getMainLooper())
+    private val autoHideDelayMs = 3000L
+
+    private val dockedWidthPx: Int = dpToPx(7)
+    private val expandedWidthPx: Int = dpToPx(56)
+
     private val modules: Map<Int, FeatureModule> = mapOf(
         1 to ScreenshotModule(),
         2 to ScreenRecordModule(),
@@ -55,11 +67,12 @@ class FloatingWidgetManager(
         val initialPosition: DockPosition
 
         if (restored != null) {
-            initialX = restored.x
+            val maxX = (screenSize.x - dockedWidthPx).coerceAtLeast(0)
+            initialX = restored.x.coerceIn(0, maxX)
             initialY = restored.y
             initialPosition = restored.position
         } else {
-            initialX = screenSize.x - dpToPx(24)
+            initialX = (screenSize.x - dockedWidthPx).coerceAtLeast(0)
             initialY = screenSize.y / 3
             initialPosition = DockPosition.RIGHT
         }
@@ -81,7 +94,21 @@ class FloatingWidgetManager(
         windowManager.addView(icon, iconParams)
         floatingIcon = icon
 
+        iconParams?.width = dockedWidthPx
+        iconParams?.x = when (initialPosition) {
+            DockPosition.LEFT -> 0
+            DockPosition.RIGHT -> (screenSize.x - dockedWidthPx).coerceAtLeast(0)
+            DockPosition.NONE -> initialX
+        }
+        try { windowManager.updateViewLayout(icon, iconParams) } catch (_: Exception) {}
+
         icon.alpha = 1.0f
+
+        handleView = icon.findViewById(R.id.handle_pill)
+        cameraContainer = icon.findViewById(R.id.camera_container)
+        updateHandleGravity(initialPosition)
+        cameraContainer?.visibility = View.GONE
+        cameraContainer?.alpha = 0f
 
         screenshotFeedback = ScreenshotFeedback(context, windowManager, density)
         screenFlashOverlay = ScreenFlashOverlay(context, windowManager)
@@ -106,6 +133,9 @@ class FloatingWidgetManager(
             context, windowManager, icon, iconParams!!, density,
             object : DragHandler.Callbacks {
                 override fun onDragStart() {
+                    if (isExpanded) {
+                        collapse()
+                    }
                 }
 
                 override fun onDragEnd(zone: MagneticZone) {
@@ -118,20 +148,38 @@ class FloatingWidgetManager(
                         android.util.Log.w("SCREENSHOT_BLOCKED", "Capture already in progress")
                         return
                     }
-                    if (now - lastScreenshotTimeMs < screenshotDebounceMs) {
-                        android.util.Log.w("SCREENSHOT_BLOCKED", "Debounce active: ${now - lastScreenshotTimeMs}ms since last screenshot")
-                        return
+                    if (isExpanded) {
+                        if (now - lastScreenshotTimeMs < screenshotDebounceMs) {
+                            android.util.Log.w("SCREENSHOT_BLOCKED", "Debounce active")
+                            return
+                        }
+                        lastScreenshotTimeMs = now
+                        onScreenshotRequested()
+                    } else {
+                        expand()
                     }
-                    android.util.Log.d("CAMERA_ICON_CLICKED", "Tap detected on floating icon")
-                    lastScreenshotTimeMs = now
-                    android.util.Log.d("SCREENSHOT_TRIGGERED", "Calling onScreenshotRequested")
-                    onScreenshotRequested()
                 }
 
                 override fun onUndock() {
                     if (toolbarController?.isVisible() == true) {
                         toolbarController?.hide()
                     }
+                    val screenSize = getScreenSize()
+                    iconParams?.width = expandedWidthPx
+                    val pos = dragHandler?.dockPosition
+                    if (pos == DockPosition.LEFT) {
+                        iconParams?.x = 0
+                    } else if (pos == DockPosition.RIGHT) {
+                        iconParams?.x = (screenSize.x - expandedWidthPx).coerceAtLeast(0)
+                    }
+                    try {
+                        iconParams?.let { windowManager.updateViewLayout(floatingIcon, it) }
+                    } catch (_: Exception) {}
+                    updateHandleGravity(DockPosition.NONE)
+                }
+
+                override fun onGravityChanged(position: DockPosition) {
+                    updateHandleGravity(position)
                 }
             }
         )
@@ -144,9 +192,124 @@ class FloatingWidgetManager(
         }
     }
 
+    private fun updateHandleGravity(position: DockPosition) {
+        val lp = handleView?.layoutParams as? FrameLayout.LayoutParams ?: return
+        val newGravity = when (position) {
+            DockPosition.LEFT -> Gravity.CENTER_VERTICAL or Gravity.LEFT
+            DockPosition.RIGHT -> Gravity.CENTER_VERTICAL or Gravity.RIGHT
+            DockPosition.NONE -> Gravity.CENTER
+        }
+        val oldGravity = lp.gravity
+        if (oldGravity != newGravity) {
+            lp.gravity = newGravity
+            handleView?.layoutParams = lp
+        }
+    }
+
+    private fun expand() {
+        if (isExpanded) return
+        isExpanded = true
+        cancelAutoHideTimer()
+
+        val screenSize = getScreenSize()
+        val isLeft = dragHandler?.dockPosition == DockPosition.LEFT
+        iconParams?.width = expandedWidthPx
+        if (isLeft) {
+            iconParams?.x = 0
+        } else {
+            iconParams?.x = (screenSize.x - expandedWidthPx).coerceAtLeast(0)
+        }
+        try { windowManager.updateViewLayout(floatingIcon, iconParams) } catch (_: Exception) {}
+
+        handleView?.let { h ->
+            h.animate()
+                .alpha(0f)
+                .scaleX(0.3f)
+                .scaleY(0.3f)
+                .setDuration(180)
+                .withEndAction {
+                    h.visibility = View.INVISIBLE
+                }
+                .start()
+        }
+
+        cameraContainer?.let { c ->
+            c.visibility = View.VISIBLE
+            c.alpha = 0f
+            c.scaleX = 0.6f
+            c.scaleY = 0.6f
+            c.animate()
+                .alpha(1f)
+                .scaleX(1f)
+                .scaleY(1f)
+                .setDuration(220)
+                .withEndAction {
+                    startAutoHideTimer()
+                }
+                .start()
+        }
+    }
+
+    private fun collapse() {
+        if (!isExpanded) return
+        isExpanded = false
+        cancelAutoHideTimer()
+
+        val screenSize = getScreenSize()
+        val isLeft = dragHandler?.dockPosition == DockPosition.LEFT
+        iconParams?.width = dockedWidthPx
+        if (isLeft) {
+            iconParams?.x = 0
+        } else {
+            iconParams?.x = (screenSize.x - dockedWidthPx).coerceAtLeast(0)
+        }
+        try { windowManager.updateViewLayout(floatingIcon, iconParams) } catch (_: Exception) {}
+
+        cameraContainer?.let { c ->
+            c.animate()
+                .alpha(0f)
+                .scaleX(0.6f)
+                .scaleY(0.6f)
+                .setDuration(150)
+                .withEndAction {
+                    c.visibility = View.GONE
+                }
+                .start()
+        }
+
+        handleView?.let { h ->
+            h.visibility = View.VISIBLE
+            h.alpha = 0f
+            h.scaleX = 0.3f
+            h.scaleY = 0.3f
+            h.animate()
+                .alpha(1f)
+                .scaleX(1f)
+                .scaleY(1f)
+                .setDuration(200)
+                .start()
+        }
+    }
+
+    private fun startAutoHideTimer() {
+        cancelAutoHideTimer()
+        autoHideHandler.postDelayed({
+            if (isExpanded) {
+                collapse()
+            }
+        }, autoHideDelayMs)
+    }
+
+    private fun cancelAutoHideTimer() {
+        autoHideHandler.removeCallbacksAndMessages(null)
+    }
+
     private fun savePosition() {
         val h = dragHandler ?: return
-        positionPersistence?.savePosition(h.getCurrentX(), h.getCurrentY(), h.dockPosition)
+        val screenSize = getScreenSize()
+        val maxX = (screenSize.x - dockedWidthPx).coerceAtLeast(0)
+        val clampedX = h.getCurrentX().coerceIn(0, maxX)
+        positionPersistence?.savePosition(clampedX, h.getCurrentY(), h.dockPosition)
     }
 
     private fun toggleToolbar() {
@@ -169,6 +332,9 @@ class FloatingWidgetManager(
 
     fun showFloatingIcon() {
         floatingIcon?.visibility = View.VISIBLE
+        if (isExpanded) {
+            collapse()
+        }
     }
 
     fun hideFloatingIcon() {
@@ -337,6 +503,7 @@ class FloatingWidgetManager(
     }
 
     fun cleanup() {
+        cancelAutoHideTimer()
         savePosition()
         removeThumbnailPopup()
         screenFlashOverlay?.hide()
