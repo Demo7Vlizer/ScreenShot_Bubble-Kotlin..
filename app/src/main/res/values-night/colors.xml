@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material 3 Dark -->
+    <color name="md_theme_dark_primary">#4F7CFF</color>
+    <color name="md_theme_dark_onPrimary">#00288B</color>
+    <color name="md_theme_dark_primaryContainer">#0038B8</color>
+    <color name="md_theme_dark_onPrimaryContainer">#DBE1FF</color>
+    <color name="md_theme_dark_secondary">#BFC4DC</color>
+    <color name="md_theme_dark_onSecondary">#2A3042</color>
+    <color name="md_theme_dark_secondaryContainer">#414659</color>
+    <color name="md_theme_dark_onSecondaryContainer">#DCE1F9</color>
+    <color name="md_theme_dark_tertiary">#E1BBDA</color>
+    <color name="md_theme_dark_onTertiary">#432740</color>
+    <color name="md_theme_dark_tertiaryContainer">#5B3D57</color>
+    <color name="md_theme_dark_onTertiaryContainer">#FED7F4</color>
+    <color name="md_theme_dark_error">#FFB4AB</color>
+    <color name="md_theme_dark_onError">#690005</color>
+    <color name="md_theme_dark_errorContainer">#93000A</color>
+    <color name="md_theme_dark_onErrorContainer">#FFDAD6</color>
+    <color name="md_theme_dark_background">#0A0A0A</color>
+    <color name="md_theme_dark_onBackground">#E4E4E7</color>
+    <color name="md_theme_dark_surface">#16181D</color>
+    <color name="md_theme_dark_onSurface">#E4E4E7</color>
+    <color name="md_theme_dark_surfaceVariant">#44474E</color>
+    <color name="md_theme_dark_onSurfaceVariant">#C4C6D0</color>
+    <color name="md_theme_dark_outline">#8E9099</color>
+    <color name="md_theme_dark_outlineVariant">#44474E</color>
+
+    <!-- App Dark -->
+    <color name="accent">#4F7CFF</color>
+    <color name="accent_container">#0038B8</color>
+    <color name="success">#34C759</color>
+    <color name="success_bg">#1A3A24</color>
+    <color name="warning">#FFB020</color>
+    <color name="warning_bg">#3D2E00</color>
+    <color name="background">#0A0A0A</color>
+    <color name="surface">#16181D</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#A0A6B2</color>
+    <color name="text_tertiary">#6B7280</color>
+    <color name="divider">#1F2128</color>
+    <color name="surface_container">#1E2028</color>
+    <color name="elevation_tint">#0A4F7CFF</color>
+
+    <!-- Legacy aliases -->
+    <color name="primary_blue">@color/accent</color>
+    <color name="primary_blue_light">@color/accent_container</color>
+    <color name="success_green">@color/success</color>
+    <color name="success_green_light">@color/success_bg</color>
+    <color name="warning_light">@color/warning_bg</color>
+    <color name="close_red">#FF8A92</color>
+    <color name="close_red_light">#3D1518</color>
+</resources>

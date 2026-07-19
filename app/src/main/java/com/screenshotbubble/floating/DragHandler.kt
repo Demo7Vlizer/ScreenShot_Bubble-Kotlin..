@@ -1,6 +1,8 @@
 package com.screenshotbubble.floating
 
 import android.animation.Animator
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Point
@@ -52,6 +54,7 @@ class DragHandler(
     private var undockAnimator: ValueAnimator? = null
     private var peekAnimator: ValueAnimator? = null
     private var peekHandler = Handler(Looper.getMainLooper())
+    private var breathingAnimator: ObjectAnimator? = null
 
     var floatingState: FloatingState = FloatingState.IDLE
     var dockPosition: DockPosition = DockPosition.RIGHT
@@ -80,7 +83,8 @@ class DragHandler(
         floatingState = FloatingState.IDLE
         lastMagneticZone = resolveZone(x, y)
         try { windowManager.updateViewLayout(iconView, iconParams) } catch (_: Exception) {}
-        applyIdleAlpha()
+        applyDockAlpha()
+        startIdleBreathing()
         startEdgePeek()
     }
 
@@ -118,6 +122,7 @@ class DragHandler(
                 snapAnimator?.cancel()
                 undockAnimator?.cancel()
                 peekHandler.removeCallbacksAndMessages(null)
+                stopIdleBreathing()
                 initialTouchX = event.rawX
                 initialTouchY = event.rawY
                 initialViewX = iconParams.x
@@ -128,7 +133,7 @@ class DragHandler(
 
                 callbacks.onUndock()
 
-                v.animate().scaleX(1.1f).scaleY(1.1f).alpha(1f).setDuration(150).start()
+                iconView.animate().scaleX(0.92f).scaleY(0.92f).alpha(1.0f).setDuration(150).start()
                 android.util.Log.d("TOUCH_DOWN", "rawXY=(${event.rawX.toInt()},${event.rawY.toInt()}) viewXY=(${iconParams.x},${iconParams.y}) docked=${dockPosition != DockPosition.NONE}")
                 return true
             }
@@ -176,18 +181,24 @@ class DragHandler(
                     val zone = snapToMagneticZone()
                     callbacks.onDragEnd(zone)
                     performHaptic()
-                    v.animate().scaleX(1f).scaleY(1f).alpha(1.0f).setDuration(150).start()
+                    v.animate().scaleX(1f).scaleY(1f).alpha(1.0f).setDuration(150)
+                        .withEndAction { startIdleBreathing() }
+                        .start()
                     startEdgePeek()
                     android.util.Log.d("TOUCH_UP", "DRAG mode — no screenshot")
                 } else if (totalMovement < dpToPx(DRAG_THRESHOLD_DP) && touchDuration < CLICK_THRESHOLD_MS) {
-                    v.animate().scaleX(1f).scaleY(1f).alpha(1.0f).setDuration(150).start()
+                    v.animate().scaleX(1f).scaleY(1f).alpha(1.0f).setDuration(150)
+                        .withEndAction { startIdleBreathing() }
+                        .start()
                     android.util.Log.d("CLICK_DETECTED", "movement=${totalMovement.toInt()}px duration=${touchDuration}ms — calling onTap")
                     callbacks.onTap()
                     startEdgePeek()
                     android.util.Log.d("TOUCH_UP", "CLICK mode — screenshot triggered")
                 } else {
                     android.util.Log.d("TOUCH_UP", "NEITHER mode — movement=${totalMovement.toInt()}px duration=${touchDuration}ms isDragging=$isDragging")
-                    v.animate().scaleX(1f).scaleY(1f).alpha(1.0f).setDuration(150).start()
+                    v.animate().scaleX(1f).scaleY(1f).alpha(1.0f).setDuration(150)
+                        .withEndAction { startIdleBreathing() }
+                        .start()
                     startEdgePeek()
                 }
 
@@ -209,8 +220,32 @@ class DragHandler(
         }
     }
 
-    private fun applyIdleAlpha() {
-        iconView.alpha = 1.0f
+    private fun applyDockAlpha() {
+        if (dockPosition != DockPosition.NONE) {
+            iconView.animate().alpha(0.7f).setDuration(300).start()
+        } else {
+            iconView.animate().alpha(1.0f).setDuration(300).start()
+        }
+    }
+
+    private fun startIdleBreathing() {
+        stopIdleBreathing()
+        val pvhX = PropertyValuesHolder.ofFloat("scaleX", 1.0f, 1.03f)
+        val pvhY = PropertyValuesHolder.ofFloat("scaleY", 1.0f, 1.03f)
+        breathingAnimator = ObjectAnimator.ofPropertyValuesHolder(iconView, pvhX, pvhY).apply {
+            duration = 2000
+            repeatMode = ObjectAnimator.REVERSE
+            repeatCount = ObjectAnimator.INFINITE
+            interpolator = DecelerateInterpolator()
+            start()
+        }
+    }
+
+    private fun stopIdleBreathing() {
+        breathingAnimator?.cancel()
+        breathingAnimator = null
+        iconView.scaleX = 1.0f
+        iconView.scaleY = 1.0f
     }
 
     private fun snapUndockedPosition() {
@@ -326,6 +361,7 @@ class DragHandler(
             iconParams.x = targetX
             iconParams.y = targetY
             try { windowManager.updateViewLayout(iconView, iconParams) } catch (_: Exception) {}
+            applyDockAlpha()
             return
         }
 
@@ -345,6 +381,7 @@ class DragHandler(
                     iconParams.x = targetX
                     iconParams.y = targetY
                     try { windowManager.updateViewLayout(iconView, iconParams) } catch (_: Exception) {}
+                    applyDockAlpha()
                 }
             })
             start()
@@ -428,6 +465,7 @@ class DragHandler(
     }
 
     fun destroy() {
+        stopIdleBreathing()
         peekHandler.removeCallbacksAndMessages(null)
         peekAnimator?.cancel()
     }

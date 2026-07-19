@@ -3,7 +3,7 @@
     android:layout_width="56dp"
     android:layout_height="56dp"
     android:background="@drawable/bg_floating_circle"
-    android:elevation="8dp"
+    android:elevation="12dp"
     android:clickable="true"
     android:focusable="true"
     android:stateListAnimator="@null">

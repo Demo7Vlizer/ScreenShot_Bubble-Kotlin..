@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="24dp">
+
+    <View
+        android:layout_width="32dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_drag_indicator"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/bottom_sheet_screenshot_mode"
+        android:textSize="18sp"
+        android:textColor="?attr/colorOnSurface"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-medium" />
+
+    <TextView
+        android:id="@+id/mode_instant"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="⚡ Instant"
+        android:textSize="16sp"
+        android:textColor="?attr/colorOnSurface"
+        android:fontFamily="sans-serif" />
+
+    <TextView
+        android:id="@+id/mode_3s"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="⏳ 3 Seconds"
+        android:textSize="16sp"
+        android:textColor="?attr/colorOnSurface"
+        android:fontFamily="sans-serif" />
+
+    <TextView
+        android:id="@+id/mode_5s"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="⏳ 5 Seconds"
+        android:textSize="16sp"
+        android:textColor="?attr/colorOnSurface"
+        android:fontFamily="sans-serif" />
+
+    <TextView
+        android:id="@+id/mode_10s"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="⏳ 10 Seconds"
+        android:textSize="16sp"
+        android:textColor="?attr/colorOnSurface"
+        android:fontFamily="sans-serif" />
+
+</LinearLayout>

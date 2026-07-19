@@ -21,6 +21,7 @@ import androidx.core.app.NotificationCompat
 import com.screenshotbubble.MainActivity
 import com.screenshotbubble.R
 import com.screenshotbubble.capture.ScreenshotCapture
+import com.screenshotbubble.floating.CountdownOverlay
 import com.screenshotbubble.floating.FloatingWidgetManager
 
 class ScreenshotService : Service() {
@@ -32,6 +33,11 @@ class ScreenshotService : Service() {
         private const val REOPEN_NOTIFICATION_ID = 1002
         const val EXTRA_RESULT_CODE = "resultCode"
         const val EXTRA_DATA = "data"
+
+        private const val PREFS_NAME = "screenshot_bubble_widget"
+        private const val KEY_SCREENSHOT_DELAY = "screenshot_delay"
+        private const val DELAY_INSTANT = "instant"
+        private const val HIDE_ICON_DELAY_MS = 100L
     }
 
     private var mediaProjection: MediaProjection? = null
@@ -39,6 +45,7 @@ class ScreenshotService : Service() {
     private var screenshotCapture: ScreenshotCapture? = null
     private var mediaProjectionCallback: MediaProjectionCallback? = null
     private var shutterSound: MediaActionSound? = null
+    private var countdownOverlay: CountdownOverlay? = null
 
     private val mainHandler = Handler(Looper.getMainLooper())
 
@@ -103,6 +110,11 @@ class ScreenshotService : Service() {
         screenshotCapture = ScreenshotCapture()
         shutterSound = MediaActionSound().apply { load(MediaActionSound.SHUTTER_CLICK) }
 
+        countdownOverlay = CountdownOverlay(
+            this,
+            getSystemService(WINDOW_SERVICE) as android.view.WindowManager
+        )
+
         widgetManager = FloatingWidgetManager(
             this,
             getSystemService(WINDOW_SERVICE) as android.view.WindowManager,
@@ -123,6 +135,9 @@ class ScreenshotService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
+        android.util.Log.d("SERVICE_STOPPED", "ScreenshotService onDestroy")
+        countdownOverlay?.hide()
+        countdownOverlay = null
         shutterSound?.release()
         shutterSound = null
         widgetManager?.cleanup()
@@ -141,48 +156,85 @@ class ScreenshotService : Service() {
         stopForeground(STOP_FOREGROUND_REMOVE)
     }
 
+    private fun getScreenshotDelaySeconds(): Int {
+        val mode = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+            .getString(KEY_SCREENSHOT_DELAY, DELAY_INSTANT) ?: DELAY_INSTANT
+        return when (mode) {
+            "3" -> 3
+            "5" -> 5
+            "10" -> 10
+            else -> 0
+        }
+    }
+
     private fun takeScreenshot() {
         val manager = widgetManager ?: run {
-            android.util.Log.e("SCREENSHOT_MODULE_CALLED", "widgetManager is null")
+            android.util.Log.e("SCREENSHOT_CAPTURE_FAILED", "widgetManager is null")
             return
         }
-        val projection = mediaProjection ?: run {
-            android.util.Log.e("SCREENSHOT_CAPTURE_FAILED", "mediaProjection is null")
+        val projection = mediaProjection
+        if (projection == null) {
+            android.util.Log.e("MEDIA_PROJECTION_STATUS", "null in takeScreenshot")
             return
         }
+        android.util.Log.d("MEDIA_PROJECTION_STATUS", "valid")
         val capture = screenshotCapture ?: run {
             android.util.Log.e("SCREENSHOT_CAPTURE_FAILED", "screenshotCapture is null")
             return
         }
 
+        val delaySeconds = getScreenshotDelaySeconds()
+        android.util.Log.d("MODE_SELECTED", "delay=${delaySeconds}s")
+
         manager.setCaptureInProgress(true)
         manager.hideFloatingIcon()
 
-        android.util.Log.d("SCREENSHOT_MODULE_CALLED", "takeScreenshot() executing")
+        if (delaySeconds <= 0) {
+            android.util.Log.d("SCREENSHOT_TRIGGERED", "Instant mode")
+            mainHandler.postDelayed({
+                executeCapture(manager, projection, capture)
+            }, HIDE_ICON_DELAY_MS)
+        } else {
+            android.util.Log.d("COUNTDOWN_STARTED", "delay=${delaySeconds}s")
+            countdownOverlay?.start(delaySeconds) {
+                android.util.Log.d("COUNTDOWN_FINISHED", "proceeding to capture")
+                android.util.Log.d("AUTO_CAPTURE_STARTED", "delayed capture triggered")
+                mainHandler.postDelayed({
+                    executeCapture(manager, projection, capture)
+                }, HIDE_ICON_DELAY_MS)
+            }
+        }
+    }
+
+    private fun executeCapture(
+        manager: FloatingWidgetManager,
+        projection: MediaProjection,
+        capture: ScreenshotCapture
+    ) {
+        android.util.Log.d("CAPTURE_METHOD_CALLED", "executeCapture invoked")
+        shutterSound?.play(MediaActionSound.SHUTTER_CLICK)
+        manager.showScreenFlash()
+
         android.util.Log.d("SCREENSHOT_CAPTURE_STARTED", "Launching async capture")
+        capture.captureScreenshotAsync(projection, this@ScreenshotService) { result ->
+            manager.showFloatingIcon()
+            manager.setCaptureInProgress(false)
+            android.util.Log.d("FLOATING_WIDGET_RESTORED", "icon shown after capture")
+            manager.showScreenshotFeedback()
+            manager.performHaptic()
 
-        mainHandler.postDelayed({
-            shutterSound?.play(MediaActionSound.SHUTTER_CLICK)
-            manager.showScreenFlash()
-
-            capture.captureScreenshotAsync(projection, this@ScreenshotService) { result ->
-                manager.showFloatingIcon()
-                manager.setCaptureInProgress(false)
-                manager.showScreenshotFeedback()
-                manager.performHaptic()
-
-                when (result) {
-                    is com.screenshotbubble.capture.ScreenshotResult.Success -> {
-                        android.util.Log.d("SCREENSHOT_CAPTURE_SUCCESS", "URI=${result.uri} count=${result.count}")
-                        manager.showThumbnailPreview(result.uri)
-                    }
-                    is com.screenshotbubble.capture.ScreenshotResult.Error -> {
-                        android.util.Log.e("SCREENSHOT_CAPTURE_FAILED", result.message)
-                        manager.showErrorMessage(result.message)
-                    }
+            when (result) {
+                is com.screenshotbubble.capture.ScreenshotResult.Success -> {
+                    android.util.Log.d("AUTO_CAPTURE_SUCCESS", "URI=${result.uri} count=${result.count}")
+                    android.util.Log.d("SCREENSHOT_CAPTURE_SUCCESS", "URI=${result.uri} count=${result.count}")
+                    manager.showThumbnailPreview(result.uri)
+                }
+                is com.screenshotbubble.capture.ScreenshotResult.Error -> {
+                    android.util.Log.e("SCREENSHOT_CAPTURE_FAILED", result.message)
+                    manager.showErrorMessage(result.message)
                 }
             }
-        }, 100)
+        }
     }
 
     private fun handleRestartWithoutData() {

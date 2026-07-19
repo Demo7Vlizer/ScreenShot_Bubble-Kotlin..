@@ -1,23 +1,15 @@
 [
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\drag_indicator.xml",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\drag_indicator.xml"
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\bottom_sheet_screenshot_mode.xml",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\bottom_sheet_screenshot_mode.xml"
     },
     {
-        "merged": "com.screenshotbubble.app-mergeDebugResources-30:/layout/toolbar_item.xml",
-        "source": "com.screenshotbubble.app-main-33:/layout/toolbar_item.xml"
-    },
-    {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\toolbar_item.xml",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\toolbar_item.xml"
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\bottom_sheet_theme.xml",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\bottom_sheet_theme.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\close_target.xml",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\close_target.xml"
-    },
-    {
-        "merged": "com.screenshotbubble.app-mergeDebugResources-30:/layout/floating_icon.xml",
-        "source": "com.screenshotbubble.app-main-33:/layout/floating_icon.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\floating_toolbar.xml",
@@ -28,16 +20,28 @@
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\thumbnail_popup.xml"
     },
     {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\drag_indicator.xml",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\drag_indicator.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-mergeDebugResources-30:/layout/countdown_overlay.xml",
+        "source": "com.screenshotbubble.app-main-33:/layout/countdown_overlay.xml"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\toolbar_item.xml",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\toolbar_item.xml"
+    },
+    {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\screenshot_feedback.xml",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\screenshot_feedback.xml"
     },
     {
-        "merged": "com.screenshotbubble.app-mergeDebugResources-30:/layout/activity_main.xml",
-        "source": "com.screenshotbubble.app-main-33:/layout/activity_main.xml"
-    },
-    {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\countdown_overlay.xml",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\countdown_overlay.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-mergeDebugResources-30:\\layout\\floating_icon.xml",

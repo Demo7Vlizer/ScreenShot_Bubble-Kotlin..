@@ -1,27 +1,15 @@
 [
     {
-        "merged": "com.screenshotbubble.app-merged_res-31:/layout_floating_icon.xml.flat",
-        "source": "com.screenshotbubble.app-main-33:/layout/floating_icon.xml"
-    },
-    {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\layout_floating_toolbar.xml.flat",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\floating_toolbar.xml"
     },
     {
-        "merged": "com.screenshotbubble.app-merged_res-31:/drawable_bg_dashboard_card.xml.flat",
-        "source": "com.screenshotbubble.app-main-33:/drawable/bg_dashboard_card.xml"
-    },
-    {
-        "merged": "com.screenshotbubble.app-merged_res-31:/drawable_bg_floating_circle.xml.flat",
-        "source": "com.screenshotbubble.app-main-33:/drawable/bg_floating_circle.xml"
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_toolbar_screenrecord.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_toolbar_screenrecord.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_check.xml.flat",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_check.xml"
-    },
-    {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_toolbar_screenrecord.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_toolbar_screenrecord.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_launcher_foreground.xml.flat",
@@ -32,12 +20,12 @@
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\layout_thumbnail_popup.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\thumbnail_popup.xml"
-    },
-    {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\mipmap-xhdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\layout_thumbnail_popup.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\thumbnail_popup.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\mipmap-xxhdpi_ic_launcher.png.flat",
@@ -48,6 +36,10 @@
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\bg_feedback_glass.xml"
     },
     {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_warning.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_warning.xml"
+    },
+    {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\mipmap-xxhdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
@@ -56,8 +48,12 @@
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_toolbar_screenshot.xml"
     },
     {
-        "merged": "com.screenshotbubble.app-merged_res-31:/layout_toolbar_item.xml.flat",
-        "source": "com.screenshotbubble.app-main-33:/layout/toolbar_item.xml"
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_status_pill.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\bg_status_pill.xml"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_chevron.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_chevron.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\layout_activity_main.xml.flat",
@@ -92,6 +88,14 @@
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
     {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_dot.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_dot.xml"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_bubble_logo.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_bubble_logo.xml"
+    },
+    {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_indicator_line.xml.flat",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\bg_indicator_line.xml"
     },
@@ -102,6 +106,10 @@
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_check_badge.xml.flat",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\bg_check_badge.xml"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\layout_countdown_overlay.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\countdown_overlay.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_floating_circle.xml.flat",
@@ -128,12 +136,16 @@
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\close_target.xml"
     },
     {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_toolbar_longshot.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_toolbar_longshot.xml"
+    },
+    {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_close.xml.flat",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_close.xml"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_toolbar_longshot.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_toolbar_longshot.xml"
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\layout_bottom_sheet_screenshot_mode.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\bottom_sheet_screenshot_mode.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_dashboard_card.xml.flat",
@@ -142,6 +154,14 @@
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_camera.xml.flat",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_camera.xml"
+    },
+    {
+        "merged": "com.screenshotbubble.app-merged_res-31:/layout_countdown_overlay.xml.flat",
+        "source": "com.screenshotbubble.app-main-33:/layout/countdown_overlay.xml"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\layout_bottom_sheet_theme.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\layout\\bottom_sheet_theme.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
@@ -156,12 +176,12 @@
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_popup_card.xml.flat",
-        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\bg_popup_card.xml"
-    },
-    {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_ic_launcher_background.xml.flat",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_popup_card.xml.flat",
+        "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\drawable\\bg_popup_card.xml"
     },
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\drawable_bg_drag_indicator.xml.flat",
@@ -186,9 +206,5 @@
     {
         "merged": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-merged_res-31:\\mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\NAV\\.gradle\\daemon\\8.5\\com.screenshotbubble.app-main-33:\\mipmap-mdpi\\ic_launcher_round.png"
-    },
-    {
-        "merged": "com.screenshotbubble.app-merged_res-31:/layout_activity_main.xml.flat",
-        "source": "com.screenshotbubble.app-main-33:/layout/activity_main.xml"
     }
 ]

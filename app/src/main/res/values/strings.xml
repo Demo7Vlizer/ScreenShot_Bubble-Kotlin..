@@ -1,29 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Screenshot Bubble</string>
-    <string name="app_subtitle">Tap the floating icon to capture</string>
-    <string name="service_inactive">Service inactive</string>
-    <string name="service_active">Service running</string>
+    <string name="app_subtitle">Capture from anywhere</string>
+    <string name="app_version">v1.0.0</string>
+
+    <string name="service_inactive">Inactive</string>
+    <string name="service_active">Active</string>
+
+    <string name="section_permissions">Permissions</string>
+    <string name="section_statistics">Statistics</string>
+    <string name="section_appearance">Appearance</string>
+
+    <string name="quick_action_title">Floating Service</string>
+    <string name="quick_action_desc">Enable floating screenshot bubble</string>
+
+    <string name="screenshot_mode_title">Screenshot Mode</string>
+    <string name="screenshot_mode_desc">Delay before capture</string>
+    <string name="screenshot_mode_instant">Instant</string>
+    <string name="screenshot_mode_3s">3 Seconds</string>
+    <string name="screenshot_mode_5s">5 Seconds</string>
+    <string name="screenshot_mode_10s">10 Seconds</string>
 
     <string name="permission_overlay_title">Overlay Permission</string>
     <string name="permission_overlay_desc">Allow floating icon on top of other apps</string>
     <string name="permission_overlay_granted">Overlay granted</string>
-    <string name="permission_overlay_action">Allow overlay</string>
+    <string name="permission_overlay_action">Allow</string>
 
     <string name="permission_capture_title">Screen Capture</string>
     <string name="permission_capture_desc">Enable screenshot capability</string>
     <string name="permission_capture_granted">Capture enabled</string>
-    <string name="permission_capture_action">Enable capture</string>
+    <string name="permission_capture_action">Enable</string>
 
-    <string name="stats_title">Screenshots taken</string>
+    <string name="stats_title">Screenshots Taken</string>
     <string name="stats_empty">No screenshots yet</string>
 
-    <string name="service_start">Start Bubble</string>
-    <string name="service_stop">Stop Bubble</string>
+    <string name="badge_granted">Granted</string>
+    <string name="badge_required">Required</string>
 
-    <string name="all_set">You\'re all set!</string>
-    <string name="button_allow_overlay">Allow floating icon</string>
-    <string name="button_enable_capture">Enable screenshot capture</string>
+    <string name="appearance_title">Theme</string>
+    <string name="appearance_light">Light</string>
+    <string name="appearance_dark">Dark</string>
+    <string name="appearance_system">Follow System</string>
+
+    <string name="service_start">Start</string>
+    <string name="service_stop">Stop</string>
+
+    <string name="bottom_sheet_screenshot_mode">Capture Delay</string>
+    <string name="bottom_sheet_theme">Choose Theme</string>
 
     <string name="notification_channel_name">Screenshot Service</string>
     <string name="notification_channel_desc">Shows when screenshot bubble is active</string>
@@ -33,7 +56,7 @@
     <string name="notification_reopen_text">Screenshot Bubble was interrupted — tap to reopen and re-enable</string>
     <string name="error_save_failed">Failed to save</string>
     <string name="error_projections_stopped">Screenshot capture was interrupted</string>
-    <string name="saved_label">Saved ✓</string>
+    <string name="saved_label">Saved</string>
     <string name="toolbar_screenshot">Screenshot</string>
     <string name="toolbar_screenrecord">Screen Record</string>
     <string name="toolbar_longshot">Long Screenshot</string>

@@ -4,179 +4,507 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="?android:attr/colorBackground"
+    android:clipToPadding="false"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="24dp"
+        android:paddingHorizontal="20dp"
         android:paddingTop="48dp"
         android:paddingBottom="32dp">
 
-        <LinearLayout
-            android:id="@+id/header_section"
-            android:layout_width="match_parent"
+        <!-- ============ HERO SECTION ============ -->
+        <FrameLayout
+            android:id="@+id/header_icon"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/bg_header_circle"
+            android:backgroundTint="?attr/colorPrimaryContainer"
+            android:elevation="4dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_bubble_logo"
+                android:importantForAccessibility="no"
+                app:tint="?attr/colorPrimary" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginBottom="28dp">
+            android:layout_marginTop="16dp"
+            android:text="@string/app_name"
+            android:textSize="26sp"
+            android:textColor="?attr/colorOnBackground"
+            android:textStyle="bold"
+            android:letterSpacing="-0.02"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintTop_toBottomOf="@id/header_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-            <FrameLayout
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_header_circle"
-                android:elevation="0dp">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_camera"
-                    android:importantForAccessibility="no"
-                    app:tint="@color/primary_blue" />
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textSize="24sp"
-                android:textColor="@color/text_primary"
-                android:textStyle="bold"
-                android:fontFamily="sans-serif"
-                android:letterSpacing="-0.01" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_subtitle"
-                android:textSize="15sp"
-                android:textColor="@color/text_secondary"
-                android:layout_marginTop="4dp"
-                android:fontFamily="sans-serif" />
-
-            <TextView
-                android:id="@+id/status_badge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/service_inactive"
-                android:textSize="12sp"
-                android:textColor="@color/text_tertiary"
-                android:background="@drawable/bg_dashboard_card"
-                android:backgroundTint="@color/divider"
-                android:paddingHorizontal="14dp"
-                android:paddingVertical="5dp"
-                android:layout_marginTop="14dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/permissions_section"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/subtitle_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="28dp">
+            android:layout_marginTop="4dp"
+            android:text="@string/app_subtitle"
+            android:textSize="14sp"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:fontFamily="sans-serif"
+            app:layout_constraintTop_toBottomOf="@id/title_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-            <TextView
-                android:id="@+id/permissions_header"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Permissions"
-                android:textSize="12sp"
-                android:textColor="@color/text_tertiary"
-                android:textStyle="bold"
-                android:letterSpacing="0.06"
-                android:fontFamily="sans-serif"
-                android:layout_marginBottom="12dp"
-                android:layout_marginStart="4dp" />
+        <TextView
+            android:id="@+id/status_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/service_inactive"
+            android:textSize="12sp"
+            android:textColor="@color/text_tertiary"
+            android:background="@drawable/bg_status_pill"
+            android:backgroundTint="@color/divider"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="5dp"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_dot"
+            android:fontFamily="sans-serif-medium"
+            app:drawableTint="@color/text_tertiary"
+            app:layout_constraintTop_toBottomOf="@id/subtitle_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- ============ PRIMARY CONTROLS CARD ============ -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/primary_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="?attr/colorSurface"
+            app:strokeWidth="0dp"
+            app:layout_constraintTop_toBottomOf="@id/status_badge"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <LinearLayout
-                android:id="@+id/card_overlay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:background="@drawable/bg_dashboard_card"
-                android:elevation="0dp"
-                android:padding="16dp"
-                android:layout_marginBottom="10dp">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/overlay_icon"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
-                    android:layout_marginEnd="14dp"
-                    android:importantForAccessibility="no"
-                    android:background="@drawable/bg_header_circle"
-                    android:backgroundTint="@color/primary_blue_light"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_check"
-                    app:tint="@color/primary_blue" />
-
+                <!-- Floating Service Row -->
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:id="@+id/floating_service_row"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_marginEnd="8dp">
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        android:id="@+id/service_icon_frame"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/bg_header_circle"
+                        android:backgroundTint="?attr/colorPrimaryContainer">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_bubble_logo"
+                            android:importantForAccessibility="no"
+                            app:tint="?attr/colorPrimary" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/quick_action_title"
+                            android:textSize="15sp"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textStyle="bold"
+                            android:fontFamily="sans-serif-medium" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/quick_action_desc"
+                            android:textSize="13sp"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:layout_marginTop="1dp"
+                            android:fontFamily="sans-serif" />
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/quick_action_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- Divider -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/divider"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginEnd="14dp" />
+
+                <!-- Screenshot Mode Row -->
+                <LinearLayout
+                    android:id="@+id/screenshot_mode_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="14dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground">
+
+                    <FrameLayout
+                        android:id="@+id/mode_icon_frame"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/bg_header_circle"
+                        android:backgroundTint="?attr/colorSecondaryContainer">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="⚡"
+                            android:textSize="18sp"
+                            android:importantForAccessibility="no" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/screenshot_mode_title"
+                            android:textSize="15sp"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textStyle="bold"
+                            android:fontFamily="sans-serif-medium" />
+
+                        <TextView
+                            android:id="@+id/mode_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/screenshot_mode_instant"
+                            android:textSize="13sp"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:layout_marginTop="1dp"
+                            android:fontFamily="sans-serif" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/mode_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/screenshot_mode_instant"
+                        android:textSize="13sp"
+                        android:textColor="?attr/colorPrimary"
+                        android:fontFamily="sans-serif-medium"
+                        android:drawableEnd="@drawable/ic_chevron"
+                        android:drawablePadding="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ============ PERMISSIONS CARD ============ -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/permissions_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="?attr/colorSurface"
+            app:strokeWidth="0dp"
+            app:layout_constraintTop_toBottomOf="@id/primary_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp">
+
+                <!-- Overlay Permission Row -->
+                <LinearLayout
+                    android:id="@+id/overlay_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="10dp">
+
+                    <ImageView
+                        android:id="@+id/overlay_icon"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="12dp"
+                        android:importantForAccessibility="no"
+                        android:background="@drawable/bg_header_circle"
+                        android:backgroundTint="@color/accent_container"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_check"
+                        app:tint="@color/accent" />
 
                     <TextView
                         android:id="@+id/overlay_title"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/permission_overlay_title"
-                        android:textSize="15sp"
-                        android:textColor="@color/text_primary"
-                        android:textStyle="bold"
-                        android:fontFamily="sans-serif" />
+                        android:layout_weight="1"
+                        android:text="@string/permission_overlay_granted"
+                        android:textSize="14sp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:fontFamily="sans-serif-medium" />
 
                     <TextView
-                        android:id="@+id/overlay_desc"
+                        android:id="@+id/overlay_badge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/permission_overlay_desc"
+                        android:text="@string/badge_granted"
+                        android:textSize="11sp"
+                        android:textColor="@color/success"
+                        android:background="@drawable/bg_status_pill"
+                        android:backgroundTint="@color/success_bg"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_overlay"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/permission_overlay_action"
+                        android:textSize="12sp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+                <!-- Divider -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/divider"
+                    android:layout_marginStart="62dp"
+                    android:layout_marginEnd="14dp" />
+
+                <!-- Capture Permission Row -->
+                <LinearLayout
+                    android:id="@+id/capture_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="10dp">
+
+                    <ImageView
+                        android:id="@+id/capture_icon"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="12dp"
+                        android:importantForAccessibility="no"
+                        android:background="@drawable/bg_header_circle"
+                        android:backgroundTint="@color/accent_container"
+                        android:padding="7dp"
+                        android:src="@drawable/ic_check"
+                        app:tint="@color/accent" />
+
+                    <TextView
+                        android:id="@+id/capture_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/permission_capture_granted"
+                        android:textSize="14sp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:id="@+id/capture_badge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/badge_granted"
+                        android:textSize="11sp"
+                        android:textColor="@color/success"
+                        android:background="@drawable/bg_status_pill"
+                        android:backgroundTint="@color/success_bg"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_capture"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/permission_capture_action"
+                        android:textSize="12sp"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="4dp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ============ STATISTICS CARD ============ -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/stats_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="?attr/colorSurface"
+            app:strokeWidth="0dp"
+            app:layout_constraintTop_toBottomOf="@id/permissions_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="14dp">
+
+                <ImageView
+                    android:id="@+id/stats_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="12dp"
+                    android:importantForAccessibility="no"
+                    android:background="@drawable/bg_header_circle"
+                    android:backgroundTint="?attr/colorPrimaryContainer"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_camera"
+                    app:tint="?attr/colorPrimary" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/stats_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="28sp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginEnd="8dp" />
+
+                    <TextView
+                        android:id="@+id/stats_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stats_title"
                         android:textSize="13sp"
-                        android:textColor="@color/text_secondary"
-                        android:layout_marginTop="3dp"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         android:fontFamily="sans-serif" />
                 </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_overlay"
+                    android:id="@+id/btn_service"
                     style="@style/Widget.Material3.Button.TonalButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/permission_overlay_action"
-                    android:textSize="13sp"
+                    android:text="@string/service_start"
+                    android:textSize="12sp"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     android:paddingHorizontal="14dp"
                     android:paddingVertical="6dp" />
             </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ============ APPEARANCE ROW ============ -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/appearance_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="?attr/colorSurface"
+            app:strokeWidth="0dp"
+            app:layout_constraintTop_toBottomOf="@id/stats_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <LinearLayout
-                android:id="@+id/card_capture"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:background="@drawable/bg_dashboard_card"
-                android:elevation="0dp"
-                android:padding="16dp">
+                android:padding="14dp">
 
-                <ImageView
-                    android:id="@+id/capture_icon"
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
-                    android:layout_marginEnd="14dp"
-                    android:importantForAccessibility="no"
+                <FrameLayout
+                    android:id="@+id/appearance_icon_frame"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="12dp"
                     android:background="@drawable/bg_header_circle"
-                    android:backgroundTint="@color/primary_blue_light"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_camera"
-                    app:tint="@color/primary_blue" />
+                    android:backgroundTint="?attr/colorSecondaryContainer">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="🌙"
+                        android:textSize="18sp"
+                        android:importantForAccessibility="no" />
+                </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -186,130 +514,54 @@
                     android:layout_marginEnd="8dp">
 
                     <TextView
-                        android:id="@+id/capture_title"
+                        android:id="@+id/appearance_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/permission_capture_title"
+                        android:text="@string/appearance_title"
                         android:textSize="15sp"
-                        android:textColor="@color/text_primary"
+                        android:textColor="?attr/colorOnSurface"
                         android:textStyle="bold"
-                        android:fontFamily="sans-serif" />
+                        android:fontFamily="sans-serif-medium" />
 
                     <TextView
-                        android:id="@+id/capture_desc"
+                        android:id="@+id/appearance_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/permission_capture_desc"
+                        android:text="@string/appearance_dark"
                         android:textSize="13sp"
-                        android:textColor="@color/text_secondary"
-                        android:layout_marginTop="3dp"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:layout_marginTop="1dp"
                         android:fontFamily="sans-serif" />
                 </LinearLayout>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_capture"
-                    style="@style/Widget.Material3.Button.TonalButton"
+                <TextView
+                    android:id="@+id/appearance_mode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/permission_capture_action"
+                    android:text="@string/appearance_dark"
                     android:textSize="13sp"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
-                    android:paddingHorizontal="14dp"
-                    android:paddingVertical="6dp" />
+                    android:textColor="?attr/colorPrimary"
+                    android:fontFamily="sans-serif-medium"
+                    android:drawableEnd="@drawable/ic_chevron"
+                    android:drawablePadding="4dp" />
             </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:id="@+id/all_set_banner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/all_set"
-                android:textSize="14sp"
-                android:textColor="@color/success_green"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:background="@drawable/bg_dashboard_card"
-                android:backgroundTint="@color/success_green_light"
-                android:paddingVertical="14dp"
-                android:layout_marginTop="10dp"
-                android:visibility="gone" />
-        </LinearLayout>
-
+        <!-- ============ VERSION ============ -->
         <TextView
-            android:id="@+id/stats_header"
+            android:id="@+id/version_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/stats_title"
+            android:layout_marginTop="20dp"
+            android:text="@string/app_version"
             android:textSize="12sp"
-            android:textColor="@color/text_tertiary"
-            android:textStyle="bold"
-            android:letterSpacing="0.06"
+            android:textColor="?attr/colorOnSurfaceVariant"
             android:fontFamily="sans-serif"
-            android:layout_marginBottom="12dp"
-            android:layout_marginStart="4dp" />
+            android:alpha="0.35"
+            app:layout_constraintTop_toBottomOf="@id/appearance_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/card_stats"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:background="@drawable/bg_dashboard_card"
-            android:elevation="0dp"
-            android:padding="16dp"
-            android:layout_marginBottom="24dp">
-
-            <ImageView
-                android:id="@+id/stats_icon"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_marginEnd="14dp"
-                android:importantForAccessibility="no"
-                android:background="@drawable/bg_header_circle"
-                android:backgroundTint="@color/primary_blue_light"
-                android:padding="10dp"
-                android:src="@drawable/ic_check"
-                app:tint="@color/primary_blue" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/stats_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="28sp"
-                    android:textColor="@color/text_primary"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif" />
-
-                <TextView
-                    android:id="@+id/stats_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/stats_title"
-                    android:textSize="13sp"
-                    android:textColor="@color/text_secondary"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="sans-serif" />
-            </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_service"
-                style="@style/Widget.Material3.Button.TonalButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/service_start"
-                android:textSize="13sp"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:paddingHorizontal="18dp"
-                android:paddingVertical="6dp" />
-        </LinearLayout>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
