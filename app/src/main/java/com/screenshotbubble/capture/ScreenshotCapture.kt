@@ -14,6 +14,7 @@ import android.os.Looper
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
+import kotlin.math.min
 
 class ScreenshotCapture {
 
@@ -65,13 +66,11 @@ class ScreenshotCapture {
                 try {
                     val bmp = imageToBitmap(image)
                     Log.d("ScreenshotCapture", "Bitmap created: ${bmp.width}x${bmp.height}")
-                    mainHandler.post {
-                        val saver = ScreenshotSaver(context)
-                        val result = saver.save(bmp)
-                        Log.d("ScreenshotCapture", "Save result: $result")
-                        cleanup()
-                        onResult(result)
-                    }
+                    val saver = ScreenshotSaver(context)
+                    val result = saver.save(bmp)
+                    Log.d("ScreenshotCapture", "Save result: $result")
+                    cleanup()
+                    mainHandler.post { onResult(result) }
                 } catch (e: Exception) {
                     Log.e("ScreenshotCapture", "Bitmap conversion failed", e)
                     mainHandler.post {
@@ -144,16 +143,19 @@ class ScreenshotCapture {
 
         val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         val pixels = IntArray(width * height)
-
         buffer.rewind()
+
         if (rowStride == width * pixelStride) {
-            var i = 0
-            while (i < pixels.size && buffer.hasRemaining()) {
-                val r = buffer.get().toInt() and 0xFF
-                val g = buffer.get().toInt() and 0xFF
-                val b = buffer.get().toInt() and 0xFF
-                val a = buffer.get().toInt() and 0xFF
-                pixels[i++] = (a shl 24) or (r shl 16) or (g shl 8) or b
+            val intCount = min(pixels.size, buffer.remaining() / 4)
+            val intBuffer = buffer.asIntBuffer()
+            intBuffer.get(pixels, 0, intCount)
+            for (i in 0 until intCount) {
+                val rgba = pixels[i]
+                val r = rgba and 0xFF
+                val g = (rgba shr 8) and 0xFF
+                val b = (rgba shr 16) and 0xFF
+                val a = (rgba shr 24) and 0xFF
+                pixels[i] = (a shl 24) or (r shl 16) or (g shl 8) or b
             }
         } else {
             for (row in 0 until height) {
