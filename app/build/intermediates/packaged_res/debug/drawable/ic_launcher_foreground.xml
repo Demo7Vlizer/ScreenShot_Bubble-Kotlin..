@@ -5,17 +5,53 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
+    <!-- Bubble drop shadow -->
     <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M78,44c0,-2.2 -1.8,-4 -4,-4l-10,0l-3.6,-5.4c-0.9,-1.3 -2.1,-1.6 -3.4,-1.6l-6,0c-1.3,0 -2.5,0.3 -3.4,1.6l-3.6,5.4l-10,0c-2.2,0 -4,1.8 -4,4l0,22c0,2.2 1.8,4 4,4l44,0c2.2,0 4,-1.8 4,-4l0,-22z" />
+        android:fillColor="#0A000000"
+        android:pathData="M54,52m-33,0a33,33 0,1 1,66 0a33,33 0,1 1,-66 0" />
 
+    <!-- Main glass bubble body with blue gradient -->
     <path
-        android:fillColor="#FFFFFF"
-        android:fillType="evenOdd"
-        android:pathData="M54,52m-10,0a10,10 0,1 1,20 0a10,10 0,1 1,-20 0M54,56m-5,0a5,5 0,1 0,10 0a5,5 0,1 0,-10 0" />
+        android:fillColor="#5B8CFF"
+        android:pathData="M54,47m-32,0a32,32 0,1 1,64 0a32,32 0,1 1,-64 0" />
 
+    <!-- Glass inner sheen (frosted highlight) -->
+    <path
+        android:fillColor="#1AFFFFFF"
+        android:pathData="M38,34m-20,0a20,20 0,1 1,40 0a20,20 0,1 1,-40 0" />
+
+    <!-- Camera body -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M70,46l4,0l0,4l-4,0z" />
+        android:pathData="M40,44L68,44Q70,44 70,46L70,58Q70,60 68,60L40,60Q38,60 38,58L38,46Q38,44 40,44Z" />
+
+    <!-- Camera lens cutout -->
+    <path
+        android:fillColor="#5B8CFF"
+        android:pathData="M54,50m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0" />
+
+    <!-- Camera lens inner ring -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.2"
+        android:pathData="M54,50m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0" />
+
+    <!-- Camera flash dot -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M64,46m-1.5,0a1.5,1.5 0,1 1,3 0a1.5,1.5 0,1 1,-3 0" />
+
+    <!-- Capture sparkle (4-point star) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M76,33L77.5,36.5L81,38L77.5,39.5L76,43L74.5,39.5L71,38L74.5,36.5Z" />
+
+    <!-- Glass edge border -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#33FFFFFF"
+        android:strokeWidth="1.5"
+        android:pathData="M54,47m-32,0a32,32 0,1 1,64 0a32,32 0,1 1,-64 0" />
 
 </vector>
