@@ -69,6 +69,11 @@ class ScreenshotService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        if (widgetManager != null) {
+            android.util.Log.d("SERVICE_ALREADY_RUNNING", "Service already initialized, skipping duplicate start")
+            return START_STICKY
+        }
+
         if (intent == null || !intent.hasExtra(EXTRA_RESULT_CODE) || !intent.hasExtra(EXTRA_DATA)) {
             handleRestartWithoutData()
             return START_STICKY
@@ -128,6 +133,12 @@ class ScreenshotService : Service() {
             return START_STICKY
         }
 
+        android.util.Log.d("SERVICE_START", "Service initialized and overlay created")
+        getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+            .edit()
+            .putBoolean(com.screenshotbubble.MainActivity.KEY_SERVICE_RUNNING, true)
+            .apply()
+
         return START_STICKY
     }
 
@@ -154,6 +165,11 @@ class ScreenshotService : Service() {
             unregisterReceiver(configurationReceiver)
         } catch (_: Exception) {}
         stopForeground(STOP_FOREGROUND_REMOVE)
+
+        getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+            .edit()
+            .putBoolean(com.screenshotbubble.MainActivity.KEY_SERVICE_RUNNING, false)
+            .apply()
     }
 
     private fun getScreenshotDelaySeconds(): Int {

@@ -59,6 +59,10 @@ class FloatingWidgetManager(
     )
 
     fun createFloatingWidget() {
+        if (floatingIcon != null) {
+            android.util.Log.d("OVERLAY_ALREADY_EXISTS", "Floating icon already exists, skipping creation")
+            return
+        }
         positionPersistence = PositionPersistence(context)
         val restored = positionPersistence?.restorePosition()
 
@@ -111,6 +115,7 @@ class FloatingWidgetManager(
 
         windowManager.addView(icon, iconParams)
         floatingIcon = icon
+        android.util.Log.d("OVERLAY_CREATED", "Floating widget added to WindowManager")
 
         icon.alpha = 1.0f
 

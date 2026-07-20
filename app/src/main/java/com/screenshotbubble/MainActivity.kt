@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val PREFS_NAME = "screenshot_bubble_widget"
+        const val KEY_SERVICE_RUNNING = "service_running"
         private const val KEY_THEME_MODE = "theme_mode"
         private const val KEY_SCREENSHOT_DELAY = "screenshot_delay"
         private const val MODE_LIGHT = "light"
@@ -40,7 +41,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var overlayGranted = false
     private var captureGranted = false
-    private var isServiceRunning = false
 
     private val screenCaptureLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -58,6 +58,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (savedInstanceState != null || isServiceRunning()) {
+            android.util.Log.d("ACTIVITY_RECREATED", "Activity recreated, serviceRunning=${isServiceRunning()}")
+        }
+
         binding.btnOverlay.setOnClickListener { requestOverlayPermission() }
         binding.btnCapture.setOnClickListener { requestCapturePermission() }
         binding.btnService.setOnClickListener { toggleService() }
@@ -70,7 +74,14 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         overlayGranted = Settings.canDrawOverlays(this)
+        if (isServiceRunning()) {
+            android.util.Log.d("SERVICE_STATE_RESTORED", "Service is running, updating UI")
+        }
         refreshDashboard()
+    }
+
+    private fun isServiceRunning(): Boolean {
+        return getPrefs().getBoolean(KEY_SERVICE_RUNNING, false)
     }
 
     private fun checkNotificationPermission() {
@@ -144,16 +155,19 @@ class MainActivity : AppCompatActivity() {
 
         sheet.findViewById<TextView>(R.id.theme_light).setOnClickListener {
             getPrefs().edit().putString(KEY_THEME_MODE, MODE_LIGHT).apply()
+            android.util.Log.d("THEME_CHANGED", "Theme changed to light")
             dialog.dismiss()
             recreate()
         }
         sheet.findViewById<TextView>(R.id.theme_dark).setOnClickListener {
             getPrefs().edit().putString(KEY_THEME_MODE, MODE_DARK).apply()
+            android.util.Log.d("THEME_CHANGED", "Theme changed to dark")
             dialog.dismiss()
             recreate()
         }
         sheet.findViewById<TextView>(R.id.theme_system).setOnClickListener {
             getPrefs().edit().putString(KEY_THEME_MODE, MODE_SYSTEM).apply()
+            android.util.Log.d("THEME_CHANGED", "Theme changed to system")
             dialog.dismiss()
             recreate()
         }
@@ -183,10 +197,11 @@ class MainActivity : AppCompatActivity() {
             actionLabel = getString(R.string.permission_capture_action)
         )
 
+        val running = isServiceRunning()
         val allReady = overlayGranted && captureGranted
         binding.btnService.visibility = if (allReady) View.VISIBLE else View.INVISIBLE
         if (allReady) {
-            binding.btnService.text = if (isServiceRunning)
+            binding.btnService.text = if (running)
                 getString(R.string.service_stop) else getString(R.string.service_start)
         }
 
@@ -250,7 +265,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateStatusBadge() {
-        val active = isServiceRunning
+        val active = isServiceRunning()
         binding.statusBadge.text = if (active)
             getString(R.string.service_active) else getString(R.string.service_inactive)
         binding.statusBadge.backgroundTintList = ContextCompat.getColorStateList(
@@ -279,9 +294,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun toggleService() {
-        if (isServiceRunning) {
+        if (isServiceRunning()) {
+            android.util.Log.d("SERVICE_START", "Stopping service from dashboard")
             stopService(Intent(this, ScreenshotService::class.java))
-            isServiceRunning = false
+            getPrefs().edit().putBoolean(KEY_SERVICE_RUNNING, false).apply()
             refreshDashboard()
         } else {
             val mpm = getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
@@ -290,12 +306,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startScreenshotService(resultCode: Int, data: Intent) {
+        if (isServiceRunning()) {
+            android.util.Log.d("SERVICE_ALREADY_RUNNING", "Service already running, not starting again")
+            captureGranted = true
+            refreshDashboard()
+            return
+        }
+        android.util.Log.d("SERVICE_START", "Starting foreground service")
         val intent = Intent(this, ScreenshotService::class.java).apply {
             putExtra(ScreenshotService.EXTRA_RESULT_CODE, resultCode)
             putExtra(ScreenshotService.EXTRA_DATA, data)
         }
         ContextCompat.startForegroundService(this, intent)
-        isServiceRunning = true
+        getPrefs().edit().putBoolean(KEY_SERVICE_RUNNING, true).apply()
         refreshDashboard()
     }
 }
