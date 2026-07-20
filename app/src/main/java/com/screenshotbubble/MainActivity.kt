@@ -53,13 +53,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        android.util.Log.d("ON_CREATE", "Activity onCreate, savedState=${savedInstanceState != null}")
         applyTheme()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (savedInstanceState != null || isServiceRunning()) {
-            android.util.Log.d("ACTIVITY_RECREATED", "Activity recreated, serviceRunning=${isServiceRunning()}")
+        val prefRunning = isServiceRunning()
+        android.util.Log.d("SERVICE_RUNNING_PREF", "service_running=$prefRunning")
+        if (savedInstanceState != null || prefRunning) {
+            android.util.Log.d("ACTIVITY_RECREATED", "Activity recreated, serviceRunning=$prefRunning")
         }
 
         binding.btnOverlay.setOnClickListener { requestOverlayPermission() }
@@ -71,13 +74,22 @@ class MainActivity : AppCompatActivity() {
         checkNotificationPermission()
     }
 
+    override fun onStart() {
+        super.onStart()
+        android.util.Log.d("ON_START", "Activity onStart, serviceRunning=${isServiceRunning()}")
+    }
+
     override fun onResume() {
         super.onResume()
+        android.util.Log.d("ON_RESUME", "Activity onResume")
         overlayGranted = Settings.canDrawOverlays(this)
         if (isServiceRunning()) {
-            android.util.Log.d("SERVICE_STATE_RESTORED", "Service is running, updating UI")
+            android.util.Log.d("SERVICE_STATE_RESTORED", "Service is running, restoring UI state")
+            captureGranted = true
         }
         refreshDashboard()
+        android.util.Log.d("UI_SWITCH_STATE",
+            "overlayGranted=$overlayGranted captureGranted=$captureGranted serviceRunning=${isServiceRunning()}")
     }
 
     private fun isServiceRunning(): Boolean {
@@ -294,10 +306,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun toggleService() {
-        if (isServiceRunning()) {
+        val running = isServiceRunning()
+        android.util.Log.d("ACTUAL_SERVICE_RUNNING", "$running (toggleService)")
+        if (running) {
             android.util.Log.d("SERVICE_START", "Stopping service from dashboard")
             stopService(Intent(this, ScreenshotService::class.java))
             getPrefs().edit().putBoolean(KEY_SERVICE_RUNNING, false).apply()
+            android.util.Log.d("SERVICE_RUNNING_PREF", "Set service_running=false")
             refreshDashboard()
         } else {
             val mpm = getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
@@ -308,6 +323,7 @@ class MainActivity : AppCompatActivity() {
     private fun startScreenshotService(resultCode: Int, data: Intent) {
         if (isServiceRunning()) {
             android.util.Log.d("SERVICE_ALREADY_RUNNING", "Service already running, not starting again")
+            android.util.Log.d("ACTUAL_SERVICE_RUNNING", "true (pref check during startScreenshotService)")
             captureGranted = true
             refreshDashboard()
             return
@@ -319,6 +335,7 @@ class MainActivity : AppCompatActivity() {
         }
         ContextCompat.startForegroundService(this, intent)
         getPrefs().edit().putBoolean(KEY_SERVICE_RUNNING, true).apply()
+        android.util.Log.d("SERVICE_RUNNING_PREF", "Set service_running=true")
         refreshDashboard()
     }
 }
